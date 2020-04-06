@@ -11,15 +11,7 @@ const Layout = ({ children }) => (
     }}
   >
     <Header />
-    <Box
-      sx={{
-        minHeight: "100%",
-        mx: "auto",
-        px: 3
-      }}
-    >
-      {children}
-    </Box>
+    <Box p={3}>{children}</Box>
     <Footer />
   </Flex>
 );

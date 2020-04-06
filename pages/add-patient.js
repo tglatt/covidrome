@@ -1,3 +1,12 @@
+import { Layout } from "../src/components/Layout";
+import { AddPatient } from "../src/components/AddPatient";
+
 const AddPatientPage = () => {
-  return <PatientList></PatientList>;
+  return (
+    <Layout>
+      <AddPatient></AddPatient>
+    </Layout>
+  );
 };
+
+export default AddPatientPage;
