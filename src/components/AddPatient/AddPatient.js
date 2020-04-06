@@ -1,5 +1,17 @@
-import useSWR from "swr";
+import { Box } from "rebass";
 
-const AddPatient = () => <div>ADD PATIENT</div>;
+import { AddPatientForm } from "./AddPatientForm";
+
+const AddPatient = () => {
+  const handleSubmit = async (values, { setSubmitting, setStatus }) => {
+    setSubmitting(false);
+  };
+
+  return (
+    <Box p={5}>
+      <AddPatientForm handleSubmit={handleSubmit} />
+    </Box>
+  );
+};
 
 export { AddPatient };
