@@ -6,12 +6,7 @@ import Router from "next/router";
 
 const AddPatient = () => {
   const handleSubmit = async (values, { setSubmitting, setStatus }) => {
-    const patient = {
-      lastname: values.lastname,
-      firstname: values.firstname
-    };
-
-    await createPatient(patient);
+    await createPatient(values);
     setSubmitting(false);
 
     Router.push("/");
