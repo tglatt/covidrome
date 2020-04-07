@@ -1,10 +1,10 @@
-import { Heading } from "rebass";
 import { Layout } from "../../src/components/Layout";
+import { PatientIdentification } from "../../src/components/PatientIdentification";
 
 const PatientPage = ({ patientId }) => {
   return (
     <Layout>
-      <Heading>{patientId}</Heading>
+      <PatientIdentification patientId={patientId} />
     </Layout>
   );
 };
