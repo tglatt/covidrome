@@ -3,24 +3,24 @@
     "id": 1,
     "firstname": "Adèle",
     "lastname": "GLATT",
-    "dob": "14 novembre 2015"
+    "dob": "2015-11-14"
   },
   {
     "id": 2,
     "firstname": "Jean",
     "lastname": "EIFFEL",
-    "dob": "12 mai 1982"
+    "dob": "1982-05-12"
   },
   {
     "id": 3,
     "firstname": "Albert",
     "lastname": "CAMUS",
-    "dob": "12 mai 1982"
+    "dob": "1982-05-12"
   },
   {
     "id": 4,
     "firstname": "Emile",
     "lastname": "ZOLA",
-    "dob": "12 mai 1982"
+    "dob": "1982-05-12"
   }
 ]
