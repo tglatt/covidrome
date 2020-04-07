@@ -14,7 +14,12 @@ const AddPatientForm = (props) => {
       initialValues={{
         lastname: patient ? patient.lastname : "",
         firstname: patient ? patient.firstname : "",
+        address: patient ? patient.address : "",
+        ssn: patient ? patient.ssn : "",
         dob: patient ? patient.dob : "",
+        phone: patient ? patient.phone : "",
+        email: patient ? patient.email : "",
+        physician: patient ? patient.physician : "",
       }}
       validationSchema={patientSchema}
       onSubmit={handleSubmit}
@@ -23,7 +28,12 @@ const AddPatientForm = (props) => {
         <Form>
           <Field name="lastname" label="Nom du patient" />
           <Field name="firstname" label="Prénom du patient" />
+          <Field name="address" label="Adresse" />
+          <Field name="ssn" label="N° de sécurité sociale" />
           <Field name="dob" label="Date de naissance" type="date" />
+          <Field name="phone" label="Téléphone" />
+          <Field name="email" label="Courriel" type="email" />
+          <Field name="physician" label="Médecin Généraliste" />
           <Flex alignItems="center" justifyContent="flex-end">
             <Box>
               <Button type="submit" disabled={isSubmitting}>
