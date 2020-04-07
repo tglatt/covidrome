@@ -5,7 +5,7 @@ import { Label, Input } from "@rebass/forms";
 
 import { patientSchema } from "../../lib/validationSchemas";
 
-const AddPatientForm = props => {
+const AddPatientForm = (props) => {
   const { patient, handleSubmit } = props;
 
   return (
@@ -13,7 +13,7 @@ const AddPatientForm = props => {
       initialValues={{
         lastname: patient ? patient.lastname : "",
         firstname: patient ? patient.firstname : "",
-        dob: patient ? patient.dob : ""
+        dob: patient ? patient.dob : "",
       }}
       validationSchema={patientSchema}
       onSubmit={handleSubmit}
@@ -25,7 +25,7 @@ const AddPatientForm = props => {
         handleChange,
         handleBlur,
         handleSubmit,
-        isSubmitting
+        isSubmitting,
       }) => (
         <form onSubmit={handleSubmit}>
           <Box mb={4}>
@@ -34,8 +34,9 @@ const AddPatientForm = props => {
               value={values.lastname}
               id="lastname"
               name="lastname"
-              hasError={errors.lastname}
+              hasError={touched.lastname && errors.lastname}
               onChange={handleChange}
+              onBlur={handleBlur}
             />
           </Box>
           <Box mb={4}>
@@ -44,8 +45,9 @@ const AddPatientForm = props => {
               value={values.firstname}
               id="firstname"
               name="firstname"
-              hasError={errors.firstname}
+              hasError={touched.firstname && errors.firstname}
               onChange={handleChange}
+              onBlur={handleBlur}
             />
           </Box>
           <Box mb={4}>
@@ -55,13 +57,16 @@ const AddPatientForm = props => {
               type="date"
               id="dob"
               name="dob"
-              hasError={errors.dob}
+              hasError={touched.dob && errors.dob}
               onChange={handleChange}
+              onBlur={handleBlur}
             />
           </Box>
           <Flex alignItems="center" justifyContent="flex-end">
             <Box>
-              <Button type="submit">Enregistrer</Button>
+              <Button type="submit" disabled={isSubmitting}>
+                Enregistrer
+              </Button>
             </Box>
           </Flex>
         </form>
