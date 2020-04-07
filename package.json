@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start -p 80"
   },
   "dependencies": {
     "@rebass/forms": "^4.0.6",

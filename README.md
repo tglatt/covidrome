@@ -22,3 +22,10 @@ $ yarn build
 # Build all the packages
 $ yarn dev
 ```
+
+### Build and run
+
+```sh
+docker build . -t covidrome
+docker run --publish 8080:80 covidrome
+```
