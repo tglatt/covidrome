@@ -1,25 +1,7 @@
 import useSWR from "swr";
-import { Box, Card, Flex, Button, Text } from "rebass";
-
-function fetcher(url) {
-  return fetch(url).then(r => r.json());
-}
-
-const PatientListItem = ({ patient }) => (
-  <Card p={1} m={1}>
-    <Flex justifyContent="flex-start">
-      <Box width={1 / 3}>
-        <Text>{patient.lastname}</Text>
-      </Box>
-      <Box width={1 / 3}>
-        <Text>{patient.firstname}</Text>
-      </Box>
-      <Box width={1 / 3}>
-        <Text>{patient.dob}</Text>
-      </Box>
-    </Flex>
-  </Card>
-);
+import { Box } from "rebass";
+import { PatientListItem } from "./PatientListItem";
+import { fetcher } from "../../lib/fetcher";
 
 const PatientList = () => {
   const { data, error } = useSWR("/api/patients", fetcher);

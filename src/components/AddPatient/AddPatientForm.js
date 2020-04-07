@@ -13,8 +13,8 @@ const AddPatientForm = props => {
     validationSchema: patientSchema,
     initialValues: {
       lastname: patient ? patient.lastname : "",
-      fistname: patient ? patient.fistname : "",
-      dob: patient ? patient.fistname : ""
+      firstname: patient ? patient.firstname : "",
+      dob: patient ? patient.dob : ""
     }
   });
 
@@ -37,6 +37,17 @@ const AddPatientForm = props => {
           id="firstname"
           name="firstname"
           hasError={formik.errors.firstname}
+          onChange={formik.handleChange}
+        />
+      </Box>
+      <Box mb={4}>
+        <Label htmlFor="dob">Date de naissance</Label>
+        <Input
+          value={formik.values.dob}
+          type="date"
+          id="dob"
+          name="dob"
+          hasError={formik.errors.dob}
           onChange={formik.handleChange}
         />
       </Box>
