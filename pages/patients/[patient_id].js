@@ -1,15 +1,26 @@
+import useSWR from "swr";
+import { fetcher } from "../../src/lib/fetcher";
 import { Layout } from "../../src/components/Layout";
 import { PatientIdentification } from "../../src/components/PatientIdentification";
 import { BoxWrapper } from "../../src/ui";
 import { ExamSheet } from "../../src/components/ExamSheet";
 
 const PatientPage = ({ patientId }) => {
+  const { data: patient, error } = useSWR(
+    `/api/patients/${patientId}`,
+    fetcher
+  );
   return (
     <Layout>
-      <BoxWrapper>
-        <PatientIdentification patientId={patientId} />
-        <ExamSheet></ExamSheet>
-      </BoxWrapper>
+      {!patient && <div>Loading...</div>}
+      {error && <div>Failed to fetch patient</div>}
+
+      {patient && (
+        <BoxWrapper>
+          <PatientIdentification patient={patient} />
+          <ExamSheet></ExamSheet>
+        </BoxWrapper>
+      )}
     </Layout>
   );
 };

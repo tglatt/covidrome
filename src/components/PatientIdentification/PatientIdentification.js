@@ -1,17 +1,6 @@
 import { Box, Flex, Text } from "rebass";
-import useSWR from "swr";
-import { fetcher } from "../../lib/fetcher";
 
-const PatientIdentification = ({ patientId }) => {
-  const { data: patient, error } = useSWR(
-    `/api/patients/${patientId}`,
-    fetcher
-  );
-
-  if (!patient) return <div>Loading...</div>;
-
-  if (error) return <div>Failed to fetch patient</div>;
-
+const PatientIdentification = ({ patient }) => {
   return (
     <Flex>
       <Box minWidth="200px" p={1}>
