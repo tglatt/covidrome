@@ -24,12 +24,15 @@ const patientFactorsSchema = yup.object().shape({
   FRMImmunodepression: yup.boolean(),
   FRMCirrhoseB: yup.boolean(),
   FRMThrombose: yup.boolean(),
+  FRMAutre: yup.string(),
   FRMProcheFragile: yup.boolean(),
   FRSEIsolement: yup.boolean(),
   FRSEPrecariteSociEco: yup.boolean(),
   FRSEDifficulteLinguistique: yup.boolean(),
   FRSETroublesNeuroPsy: yup.boolean(),
   FRSEPasMoyenCommunication: yup.boolean(),
+  FRSEAidant: yup.string(),
+  FRSERemarques: yup.string(),
   FRSEPieceConfinement: yup.boolean(),
 });
 

@@ -1,6 +1,7 @@
 import Field from "./Field/Field";
 import CheckBoxField from "./CheckBoxField/CheckBoxField";
 import LinkButton from "./LinkButton/LinkButton";
+import Textarea from "./Textarea/Textarea";
 import {
   BoxWrapper,
   FlexWrapper,
@@ -23,6 +24,7 @@ export {
   LinkButton,
   BoxWrapper,
   FlexWrapper,
+  Textarea,
   fourColumnStyle,
   twoColumnStyle,
   Card,

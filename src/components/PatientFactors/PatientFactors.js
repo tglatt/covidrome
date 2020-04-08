@@ -4,7 +4,7 @@ import { Box, Button, Flex } from "rebass";
 import { createPatientFactors } from "../../lib/endpoints";
 import { patientFactorsSchema } from "../../lib/validationSchemas";
 import { Card } from "../../ui/Card";
-import { CheckBoxField, Heading3, twoColumnStyle } from "../../ui";
+import { CheckBoxField, Heading3, Textarea, twoColumnStyle } from "../../ui";
 
 const PatientFactors = ({ patient }) => {
   return (
@@ -58,6 +58,7 @@ const PatientFactors = ({ patient }) => {
                   label="cirrhose >= stade B"
                 />
                 <CheckBoxField name="FRMThrombose" label="thrombose" />
+                <Textarea name="FRMAutre" label="autre" />
                 <CheckBoxField
                   name="FRMProcheFragile"
                   label="Présence d'un proche fragile au domicile"
@@ -84,6 +85,8 @@ const PatientFactors = ({ patient }) => {
                   name="FRSEPasMoyenCommunication"
                   label="pas de moyen de communication"
                 />
+                <Textarea name="FRSEAidant" label="Aidant éventuel" />
+                <Textarea name="FRSERemarques" label="Remarques" />
                 <CheckBoxField
                   name="FRSEPieceConfinement"
                   label="Pièce de confinement disponible"
