@@ -10,7 +10,6 @@ const PatientPage = ({ patientId }) => {
         <PatientIdentification patientId={patientId} />
         <ExamSheet></ExamSheet>
       </BoxWrapper>
-      >
     </Layout>
   );
 };
