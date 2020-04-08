@@ -11,6 +11,8 @@ const PatientPage = ({ patientId }) => {
     `/api/patients/${patientId}`,
     fetcher
   );
+  const { data: medecins, errorMedecins } = useSWR(`/api/medecins`, fetcher);
+  const { data: IDEs, errorIDEs } = useSWR(`/api/IDEs`, fetcher);
   return (
     <Layout>
       {error && <div>Failed to fetch patient</div>}
@@ -19,7 +21,11 @@ const PatientPage = ({ patientId }) => {
         <BoxWrapper>
           <PatientIdentification patient={patient} />
           <PatientFactors patient={patient} />
-          <PatientExam patient={patient} />
+          {errorMedecins && <div>Failed to fetch medecins</div>}
+          {errorIDEs && <div>Failed to fetch IDEs</div>}
+          {medecins && IDEs && (
+            <PatientExam patient={patient} medecins={medecins} IDEs={IDEs} />
+          )}
         </BoxWrapper>
       ) : (
         <div>Loading...</div>

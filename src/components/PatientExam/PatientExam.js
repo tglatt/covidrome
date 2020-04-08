@@ -31,7 +31,7 @@ const emptyValues = {
   autre: "",
 };
 
-const PatientExam = ({ patient }) => {
+const PatientExam = ({ patient, medecins, IDEs }) => {
   return (
     <Formik
       enableReinitialize
@@ -40,10 +40,7 @@ const PatientExam = ({ patient }) => {
         ...emptyValues,
         ...(patient.exams ? patient.exams[0] : {}),
       }}
-      validationSchema={patientExamSchema(
-        ["medecin1", "medecin2"],
-        ["ide1", "ide2"]
-      )}
+      validationSchema={patientExamSchema(medecins || [], IDEs || [])}
       onSubmit={(values, { setSubmitting, setStatus }) => {
         createPatientExam(patient, values);
         setSubmitting(false);
