@@ -1,28 +1,15 @@
+require("dotenv").config();
+
+const DATABASE_CLIENT = process.env.DATABASE_CLIENT || "sqlite3";
+
 module.exports = {
-  development: {
-    client: "pg",
-    connection: process.env.DATABASE_URL || {
-      host: "localhost",
-      user: "covidrome",
-      password: "test",
-      port: "5435",
-      database: "covidrome"
-    },
-    migrations: {
-      tableName: "knex_migrations"
-    }
+  client: DATABASE_CLIENT,
+  connection:
+    DATABASE_CLIENT === "sqlite3"
+      ? process.env.DATABASE_FILENAME || "db.sqlite"
+      : process.env.DATABASE_URL,
+  useNullAsDefault: DATABASE_CLIENT === "sqlite3",
+  migrations: {
+    tableName: "knex_migrations",
   },
-  production: {
-    client: "pg",
-    connection: process.env.DATABASE_URL || {
-      host: "localhost",
-      user: "covidrome",
-      password: "test",
-      port: "5435",
-      database: "covidrome"
-    },
-    migrations: {
-      tableName: "knex_migrations"
-    }
-  }
 };
