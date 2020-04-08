@@ -18,7 +18,7 @@ const PatientPage = ({ patientId }) => {
       {patient && (
         <BoxWrapper>
           <PatientIdentification patient={patient} />
-          <PatientFactors></PatientFactors>
+          <PatientFactors patient={patient}></PatientFactors>
         </BoxWrapper>
       )}
     </Layout>
