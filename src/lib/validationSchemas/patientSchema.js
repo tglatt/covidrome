@@ -1,6 +1,6 @@
 import yup from "./yup";
 
-const patientSchema = yup.object().shape({
+const patientInfoSchema = yup.object().shape({
   lastname: yup.string().required(),
   firstname: yup.string().required(),
   address: yup.string().required(),
@@ -11,4 +11,4 @@ const patientSchema = yup.object().shape({
   physician: yup.string().required(),
 });
 
-export { patientSchema };
+export { patientInfoSchema };

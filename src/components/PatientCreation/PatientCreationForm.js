@@ -2,11 +2,11 @@ import { Form, Formik } from "formik";
 import React from "react";
 import { Box, Flex, Button } from "rebass";
 
-import { patientSchema } from "../../lib/validationSchemas";
+import { patientInfoSchema } from "../../lib/validationSchemas";
 
 import { Field } from "../../ui";
 
-const PatientCreationForm = props => {
+const PatientCreationForm = (props) => {
   const { patient, handleSubmit } = props;
 
   return (
@@ -19,9 +19,9 @@ const PatientCreationForm = props => {
         dob: patient ? patient.dob : "",
         phone: patient ? patient.phone : "",
         email: patient ? patient.email : "",
-        physician: patient ? patient.physician : ""
+        physician: patient ? patient.physician : "",
       }}
-      validationSchema={patientSchema}
+      validationSchema={patientInfoSchema}
       onSubmit={handleSubmit}
     >
       {({ isSubmitting }) => (
