@@ -19,7 +19,14 @@ $ yarn build
 ### Development
 
 ```sh
-# Build all the packages
+# start db
+$ docker-compose up --build
+# migrate 
+$ ./node_modules/.bin/knex migrate:latest
+# migrate 
+$ ./node_modules/.bin/knex seed:run
+
+# start
 $ yarn dev
 ```
 

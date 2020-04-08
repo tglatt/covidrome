@@ -1,9 +1,9 @@
-import patients from "../../patients.json";
+import { Patient } from "../../../../src/models";
 
-export default (req, res) => {
+export default async (req, res) => {
   const patientIdAsString = req.query.patient_id;
   const patientId = parseInt(patientIdAsString);
-  const patient = patients.find((patient) => patient.id == patientId);
+  const patient = await Patient.query().findById(patientId);
 
   if (req.method === "POST") {
     const data = JSON.parse(req.body);
