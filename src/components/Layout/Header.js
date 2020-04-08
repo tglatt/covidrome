@@ -1,12 +1,14 @@
-import { Flex, Text } from "rebass";
+import NextLink from "next/link";
+import { Flex, Link as RebassLink, Text } from "rebass";
+import { header, headerLink } from "./style";
 
 const Header = () => (
-  <Flex
-    sx={{
-      minHeight: "100%"
-    }}
-  >
-    <Text p={2}>CoviDrome</Text>
+  <Flex sx={header}>
+    <NextLink href="/" passHref>
+      <Text p={2} sx={headerLink}>
+        CoviDrome
+      </Text>
+    </NextLink>
   </Flex>
 );
 
