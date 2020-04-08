@@ -23,11 +23,14 @@ const patientFactorsSchema = yup.object().shape({
   FRMInsRenaleDialysee: yup.boolean(),
   FRMImmunodepression: yup.boolean(),
   FRMCirrhoseB: yup.boolean(),
+  FRMThrombose: yup.boolean(),
+  FRMProcheFragile: yup.boolean(),
   FRSEIsolement: yup.boolean(),
   FRSEPrecariteSociEco: yup.boolean(),
   FRSEDifficulteLinguistique: yup.boolean(),
   FRSETroublesNeuroPsy: yup.boolean(),
   FRSEPasMoyenCommunication: yup.boolean(),
+  FRSEPieceConfinement: yup.boolean(),
 });
 
 export { patientFactorsSchema, patientInfoSchema };

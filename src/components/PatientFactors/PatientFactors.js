@@ -57,6 +57,11 @@ const PatientFactors = ({ patient }) => {
                   name="FRMCirrhoseB"
                   label="cirrhose >= stade B"
                 />
+                <CheckBoxField name="FRMThrombose" label="thrombose" />
+                <CheckBoxField
+                  name="FRMProcheFragile"
+                  label="Présence d'un proche fragile au domicile"
+                />
               </Box>
             </Card>
             <Card sx={twoColumnStyle}>
@@ -78,6 +83,10 @@ const PatientFactors = ({ patient }) => {
                 <CheckBoxField
                   name="FRSEPasMoyenCommunication"
                   label="pas de moyen de communication"
+                />
+                <CheckBoxField
+                  name="FRSEPieceConfinement"
+                  label="Pièce de confinement disponible"
                 />
               </Box>
             </Card>
