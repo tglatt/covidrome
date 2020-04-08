@@ -1,10 +1,9 @@
-import { Box } from "rebass";
-
-import { AddPatientForm } from "./AddPatientForm";
-import { createPatient } from "../../lib/endpoints";
 import Router from "next/router";
+import { Box } from "rebass";
+import { createPatient } from "../../lib/endpoints";
+import { PatientCreationForm } from "./PatientCreationForm";
 
-const AddPatient = () => {
+const PatientCreation = () => {
   const handleSubmit = async (values, { setSubmitting, setStatus }) => {
     await createPatient(values);
     setSubmitting(false);
@@ -14,9 +13,9 @@ const AddPatient = () => {
 
   return (
     <Box p={5}>
-      <AddPatientForm handleSubmit={handleSubmit} />
+      <PatientCreationForm handleSubmit={handleSubmit} />
     </Box>
   );
 };
 
-export { AddPatient };
+export { PatientCreation };

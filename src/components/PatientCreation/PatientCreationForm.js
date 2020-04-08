@@ -6,7 +6,7 @@ import { patientSchema } from "../../lib/validationSchemas";
 
 import { Field } from "../../ui";
 
-const AddPatientForm = (props) => {
+const PatientCreationForm = props => {
   const { patient, handleSubmit } = props;
 
   return (
@@ -19,7 +19,7 @@ const AddPatientForm = (props) => {
         dob: patient ? patient.dob : "",
         phone: patient ? patient.phone : "",
         email: patient ? patient.email : "",
-        physician: patient ? patient.physician : "",
+        physician: patient ? patient.physician : ""
       }}
       validationSchema={patientSchema}
       onSubmit={handleSubmit}
@@ -47,4 +47,4 @@ const AddPatientForm = (props) => {
   );
 };
 
-export { AddPatientForm };
+export { PatientCreationForm };
