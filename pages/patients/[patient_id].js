@@ -12,14 +12,15 @@ const PatientPage = ({ patientId }) => {
   );
   return (
     <Layout>
-      {!patient && <div>Loading...</div>}
       {error && <div>Failed to fetch patient</div>}
 
-      {patient && (
+      {patient ? (
         <BoxWrapper>
           <PatientIdentification patient={patient} />
           <PatientFactors patient={patient}></PatientFactors>
         </BoxWrapper>
+      ) : (
+        <div>Loading...</div>
       )}
     </Layout>
   );

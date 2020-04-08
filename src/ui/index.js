@@ -1,10 +1,11 @@
 import Field from "./Field/Field";
+import CheckBoxField from "./CheckBoxField/CheckBoxField";
 import LinkButton from "./LinkButton/LinkButton";
 import {
   BoxWrapper,
   FlexWrapper,
   fourColumnStyle,
-  twoColumnStyle
+  twoColumnStyle,
 } from "./Grid";
 import { Card } from "./Card";
 import {
@@ -13,10 +14,11 @@ import {
   Heading2,
   Heading3,
   Heading4,
-  Heading5
+  Heading5,
 } from "./Heading";
 
 export {
+  CheckBoxField,
   Field,
   LinkButton,
   BoxWrapper,
@@ -29,5 +31,5 @@ export {
   Heading2,
   Heading3,
   Heading4,
-  Heading5
+  Heading5,
 };

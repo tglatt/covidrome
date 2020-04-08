@@ -1,25 +1,23 @@
+import Router from "next/router";
 import { Form, Formik } from "formik";
 import { Box, Button, Flex } from "rebass";
-import { Checkbox, Label } from "@rebass/forms";
-import { patientInfoSchema } from "../../lib/validationSchemas";
+import { createPatientFactors } from "../../lib/endpoints";
+import { patientFactorsSchema } from "../../lib/validationSchemas";
 import { Card } from "../../ui/Card";
-import { Heading3, twoColumnStyle } from "../../ui";
-
-const CheckBoxField = ({ property, label }) => (
-  <Box>
-    <Label>
-      <Checkbox id={property} name={property} />
-      {label}
-    </Label>
-  </Box>
-);
+import { CheckBoxField, Heading3, twoColumnStyle } from "../../ui";
 
 const PatientFactors = ({ patient }) => {
   return (
     <Formik
-      initialValues={(patient && patient.factors) || {}}
-      // validationSchema={patientFactorsSchema}
-      // onSubmit={handleSubmit}
+      enableReinitialize
+      initialValues={patient.factors || {}}
+      validationSchema={patientFactorsSchema}
+      onSubmit={(values, { setSubmitting, setStatus }) => {
+        createPatientFactors(patient, values);
+        setSubmitting(false);
+
+        Router.push("/");
+      }}
     >
       {({ isSubmitting }) => (
         <Form>
@@ -27,36 +25,36 @@ const PatientFactors = ({ patient }) => {
             <Card sx={twoColumnStyle}>
               <Heading3>Facteurs de risques médicaux</Heading3>
               <Box p={1}>
-                <CheckBoxField property="FRMHTA" label="HTA" />
-                <CheckBoxField property="FRMSup70" label="âge > 70 ans" />
-                <CheckBoxField property="FRMIMCSup40" label="IMC > 40" />
-                <CheckBoxField property="FRMEnceinte" label="femme enceinte" />
+                <CheckBoxField name="FRMHTA" label="HTA" />
+                <CheckBoxField name="FRMSup70" label="âge > 70 ans" />
+                <CheckBoxField name="FRMIMCSup40" label="IMC > 40" />
+                <CheckBoxField name="FRMEnceinte" label="femme enceinte" />
                 <CheckBoxField
-                  property="FRMPathologieCardiaque"
+                  name="FRMPathologieCardiaque"
                   label="pathologie cardiaque"
                 />
                 <CheckBoxField
-                  property="FRMPathologieDiabete"
+                  name="FRMPathologieDiabete"
                   label="diabète insulino dépendant ou compliqué"
                 />
                 <CheckBoxField
-                  property="FRMPathologieRepiratoireChronique"
+                  name="FRMPathologieRepiratoireChronique"
                   label="pathologie respiratoire chronique"
                 />
                 <CheckBoxField
-                  property="FRMCancerSousTraitement"
+                  name="FRMCancerSousTraitement"
                   label="cancer sous traitement"
                 />
                 <CheckBoxField
-                  property="FRMInsRenaleDialysee"
+                  name="FRMInsRenaleDialysee"
                   label="insuffisance rénale dialysée"
                 />
                 <CheckBoxField
-                  property="FRMImmunodépression"
+                  name="FRMImmunodepression"
                   label="immunodépression (médicament, VIH)"
                 />
                 <CheckBoxField
-                  property="FRMCirrhoseB"
+                  name="FRMCirrhoseB"
                   label="cirrhose >= stade B"
                 />
               </Box>
@@ -64,21 +62,21 @@ const PatientFactors = ({ patient }) => {
             <Card sx={twoColumnStyle}>
               <Heading3>Facteurs sociaux-environementaux</Heading3>
               <Box p={1}>
-                <CheckBoxField property="FRSEIsolement" label="isolement" />
+                <CheckBoxField name="FRSEIsolement" label="isolement" />
                 <CheckBoxField
-                  property="FRSEPrecariteSociEco"
+                  name="FRSEPrecariteSociEco"
                   label="précarité socio-économique"
                 />
                 <CheckBoxField
-                  property="FRSEDifficulteLinguistique"
+                  name="FRSEDifficulteLinguistique"
                   label="difficulté linguistique"
                 />
                 <CheckBoxField
-                  property="FRSEtroublesNeuroPsy"
+                  name="FRSETroublesNeuroPsy"
                   label="troubles neuro/psy"
                 />
                 <CheckBoxField
-                  property="FRSEPasMoyenCommunication"
+                  name="FRSEPasMoyenCommunication"
                   label="pas de moyen de communication"
                 />
               </Box>

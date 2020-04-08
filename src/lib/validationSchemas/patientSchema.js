@@ -11,4 +11,23 @@ const patientInfoSchema = yup.object().shape({
   physician: yup.string().required(),
 });
 
-export { patientInfoSchema };
+const patientFactorsSchema = yup.object().shape({
+  FRMHTA: yup.boolean(),
+  FRMSup70: yup.boolean(),
+  FRMIMCSup40: yup.boolean(),
+  FRMEnceinte: yup.boolean(),
+  FRMPathologieCardiaque: yup.boolean(),
+  FRMPathologieDiabete: yup.boolean(),
+  FRMPathologieRespiratoireChronique: yup.boolean(),
+  FRMCancerSousTraitement: yup.boolean(),
+  FRMInsRenaleDialysee: yup.boolean(),
+  FRMImmunodepression: yup.boolean(),
+  FRMCirrhoseB: yup.boolean(),
+  FRSEIsolement: yup.boolean(),
+  FRSEPrecariteSociEco: yup.boolean(),
+  FRSEDifficulteLinguistique: yup.boolean(),
+  FRSETroublesNeuroPsy: yup.boolean(),
+  FRSEPasMoyenCommunication: yup.boolean(),
+});
+
+export { patientFactorsSchema, patientInfoSchema };

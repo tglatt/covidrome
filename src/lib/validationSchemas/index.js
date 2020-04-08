@@ -1,3 +1,3 @@
-import { patientInfoSchema } from "./patientSchema";
+import { patientFactorsSchema, patientInfoSchema } from "./patientSchema";
 
-export { patientInfoSchema };
+export { patientFactorsSchema, patientInfoSchema };
