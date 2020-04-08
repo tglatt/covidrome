@@ -36,21 +36,30 @@ const patientFactorsSchema = yup.object().shape({
   FRSEPieceConfinement: yup.boolean(),
 });
 
+const expectorationsChoices = [
+  "absentes",
+  "translucides",
+  "mousseuses",
+  "purulentes",
+  "hémoptoïques",
+];
+
+const etatConscienceChoices = [
+  "normal",
+  "ralentissement",
+  "somnolence",
+  "comateux",
+];
+
+const SPO2ROTHChoices = ["< 10 / 7sec", "< 7 / 5 sec", "> 30"];
+
 const patientExamSchema = (physicians, nurses) =>
   yup.object().shape({
     examDate: yup.date().required(),
     physician: yup.mixed().oneOf(physicians),
     nurse: yup.mixed().oneOf(nurses),
     toux: yup.boolean(),
-    expectorations: yup
-      .mixed()
-      .oneOf([
-        "absentes",
-        "translucides",
-        "mousseuses",
-        "purulentes",
-        "hémoptoïques",
-      ]),
+    expectorations: yup.mixed().oneOf(expectorationsChoices),
     temperature: yup.number(),
     poids: yup.number(),
     syndromeGrippal: yup.boolean(),
@@ -61,16 +70,21 @@ const patientExamSchema = (physicians, nurses) =>
     conjonctivite: yup.boolean(),
     deshydratation: yup.boolean(),
     diarrhee: yup.boolean(),
-    etatConscience: yup
-      .mixed()
-      .oneOf(["normal", "ralentissement", "somnolence", "comateux"]),
+    etatConscience: yup.mixed().oneOf(etatConscienceChoices),
     frequenceRespi: yup.number(),
     SPO2Saturometre: yup.string(),
-    SPO2ROTH: yup.mixed().oneOf(["< 10 / 7sec", "< 7 / 5 sec", "> 30"]),
+    SPO2ROTH: yup.mixed().oneOf(SPO2ROTHChoices),
     PA: yup.string(),
     pouls: yup.number(),
     marbrures: yup.boolean(),
     autre: yup.string(),
   });
 
-export { patientExamSchema, patientFactorsSchema, patientInfoSchema };
+export {
+  etatConscienceChoices,
+  expectorationsChoices,
+  patientExamSchema,
+  patientFactorsSchema,
+  patientInfoSchema,
+  SPO2ROTHChoices,
+};

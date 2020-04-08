@@ -2,8 +2,13 @@ import Router from "next/router";
 import { Form, Formik } from "formik";
 import { Box, Button, Flex } from "rebass";
 import { createPatientExam } from "../../lib/endpoints";
-import { patientExamSchema } from "../../lib/validationSchemas";
-import { CheckBoxField, Field, Textarea } from "../../ui";
+import {
+  etatConscienceChoices,
+  expectorationsChoices,
+  patientExamSchema,
+  SPO2ROTHChoices,
+} from "../../lib/validationSchemas";
+import { CheckBoxField, Field, Select, Textarea } from "../../ui";
 
 const emptyValues = {
   examDate: "",
@@ -51,10 +56,14 @@ const PatientExam = ({ patient, medecins, IDEs }) => {
       {({ isSubmitting }) => (
         <Form>
           <Field name="examDate" label="Date du bilan" type="date" />
-          <Field name="physician" label="médecin" />
-          <Field name="nurse" label="IDE" />
+          <Select name="physician" label="médecin" choices={medecins} />
+          <Select name="nurse" label="IDE" choices={IDEs} />
           <CheckBoxField name="toux" label="toux" />
-          <Field name="expectorations" label="expectorations (aspect)" />
+          <Select
+            name="expectorations"
+            label="expectorations (aspect)"
+            choices={expectorationsChoices}
+          />
           <Field name="temperature" label="température" />
           <Field name="poids" label="poids" />
           <CheckBoxField name="syndromeGrippal" label="syndrôme grippal" />
@@ -65,10 +74,14 @@ const PatientExam = ({ patient, medecins, IDEs }) => {
           <CheckBoxField name="conjonctivite" label="conjonctivite" />
           <CheckBoxField name="deshydratation" label="déshydrataion" />
           <CheckBoxField name="diarrhee" label="diarrhée" />
-          <Field name="etatConscience" label="état de conscience" />
+          <Select
+            name="etatConscience"
+            label="état de conscience"
+            choices={etatConscienceChoices}
+          />
           <Field name="frequenceRespi" label="fréquence respi X/mn" />
           <Field name="SPO2Saturometre" label="SPO2 Saturomètre" />
-          <Field name="SPO2ROTH" label="SPO2 ROTH" />
+          <Select name="SPO2ROTH" label="SPO2 ROTH" choices={SPO2ROTHChoices} />
           <Field name="PA" label="PA" />
           <Field name="pouls" label="pouls" />
           <CheckBoxField name="marbrures" label="marbrures" />

@@ -4,4 +4,5 @@ export * from "./Field/Field";
 export * from "./Grid";
 export * from "./Heading";
 export * from "./LinkButton/LinkButton";
+export * from "./Select/Select";
 export * from "./Textarea/Textarea";
