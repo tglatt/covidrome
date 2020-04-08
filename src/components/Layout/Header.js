@@ -1,15 +1,18 @@
+import React from "react";
 import NextLink from "next/link";
-import { Flex, Link as RebassLink, Text } from "rebass";
-import { header, headerLink } from "./style";
+import { Box, Flex } from "rebass";
+import { Logo } from "../../ui/Logo";
+import { headerLink } from "./style";
 
-const Header = () => (
-  <Flex sx={header}>
-    <NextLink href="/" passHref>
-      <Text p={2} sx={headerLink}>
-        CoviDrome
-      </Text>
-    </NextLink>
-  </Flex>
-);
-
+const Header = () => {
+  return (
+    <Flex alignItems="center" flexWrap="wrap" justifyContent="space-between">
+      <NextLink href="/" passHref>
+        <Box p={1} sx={headerLink}>
+          <Logo hasTitle title="CoviDrome" />
+        </Box>
+      </NextLink>
+    </Flex>
+  );
+};
 export { Header };
