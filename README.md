@@ -21,10 +21,10 @@ $ yarn build
 ```sh
 # start db
 $ docker-compose up --build
-# migrate 
-$ ./node_modules/.bin/knex migrate:latest
-# migrate 
-$ ./node_modules/.bin/knex seed:run
+# migrate
+$ yarn run knex migrate:latest
+# migrate
+$ yarn run knex seed:run
 
 # start
 $ yarn dev

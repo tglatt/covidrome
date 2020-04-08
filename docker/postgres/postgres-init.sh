@@ -10,10 +10,10 @@ psql -v ON_ERROR_STOP=1 --username postgres <<-EOSQL
     FROM pg_stat_activity
     WHERE pid <> pg_backend_pid() AND datname in ('covidrome');
 
-  -- Ensure that the emjpm database and schema is not
+  -- Ensure that the database and schema aren't present
   DROP DATABASE IF EXISTS covidrome;
 
-  -- Create the emjpm database and the default public schema
+  -- Create the database and the default public schema
   CREATE DATABASE covidrome;
 
   -- covidrome user
