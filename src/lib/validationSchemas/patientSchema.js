@@ -3,12 +3,12 @@ import yup from "./yup";
 const patientInfoSchema = yup.object().shape({
   lastname: yup.string().required(),
   firstname: yup.string().required(),
-  address: yup.string().required(),
-  ssn: yup.string().length(13).required(),
+  address: yup.string(),
+  ssn: yup.string().length(13),
   dob: yup.date().required(),
-  phone: yup.string().length(10).required(),
-  email: yup.string().email().required(),
-  physician: yup.string().required(),
+  phone: yup.string().length(10),
+  email: yup.string().email(),
+  physician: yup.string(),
 });
 
 const patientFactorsSchema = yup.object().shape({
