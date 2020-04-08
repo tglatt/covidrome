@@ -1,19 +1,21 @@
+import { Fragment } from "react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
-import { Box, Flex } from "rebass";
+import { Box } from "rebass";
+import { BoxWrapper } from "../../ui/Grid";
 
 const Layout = ({ children }) => (
-  <Flex
-    sx={{
-      flexDirection: "column",
-      flexWrap: "wrap",
-      mt: "2"
-    }}
-  >
-    <Header />
-    <Box p={3}>{children}</Box>
-    <Footer />
-  </Flex>
+  <Fragment>
+    <Box sx={{ position: "relative", "z-index": "1000" }} bg="cardPrimary">
+      <Header />
+    </Box>
+    {children}
+    <Box bg="cardPrimary">
+      <BoxWrapper px="1">
+        <Footer />
+      </BoxWrapper>
+    </Box>
+  </Fragment>
 );
 
 export { Layout };

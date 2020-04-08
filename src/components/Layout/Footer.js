@@ -3,13 +3,10 @@ import { Flex, Text } from "rebass";
 const Footer = () => (
   <Flex
     sx={{
-      minHeight: "100%",
-      background: "gray"
+      minHeight: "100%"
     }}
   >
-    <Text p={2} color="white">
-      Footer
-    </Text>
+    <Text p={2}>Footer</Text>
   </Flex>
 );
 

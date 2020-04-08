@@ -3,13 +3,10 @@ import { Flex, Text } from "rebass";
 const Header = () => (
   <Flex
     sx={{
-      minHeight: "100%",
-      background: "gray"
+      minHeight: "100%"
     }}
   >
-    <Text p={2} color="white">
-      CoviDrome
-    </Text>
+    <Text p={2}>CoviDrome</Text>
   </Flex>
 );
 
