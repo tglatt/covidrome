@@ -4,6 +4,7 @@ import { Layout } from "../../src/components/Layout";
 import { PatientIdentification } from "../../src/components/PatientIdentification";
 import { BoxWrapper } from "../../src/ui";
 import { PatientFactors } from "../../src/components/PatientFactors";
+import { PatientExam } from "../../src/components/PatientExam";
 
 const PatientPage = ({ patientId }) => {
   const { data: patient, error } = useSWR(
@@ -17,7 +18,8 @@ const PatientPage = ({ patientId }) => {
       {patient ? (
         <BoxWrapper>
           <PatientIdentification patient={patient} />
-          <PatientFactors patient={patient}></PatientFactors>
+          <PatientFactors patient={patient} />
+          <PatientExam patient={patient} />
         </BoxWrapper>
       ) : (
         <div>Loading...</div>

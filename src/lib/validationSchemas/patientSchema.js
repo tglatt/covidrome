@@ -36,4 +36,41 @@ const patientFactorsSchema = yup.object().shape({
   FRSEPieceConfinement: yup.boolean(),
 });
 
-export { patientFactorsSchema, patientInfoSchema };
+const patientExamSchema = (physicians, nurses) =>
+  yup.object().shape({
+    examDate: yup.date().required(),
+    physician: yup.mixed().oneOf(physicians),
+    nurse: yup.mixed().oneOf(nurses),
+    toux: yup.boolean(),
+    expectorations: yup
+      .mixed()
+      .oneOf([
+        "absentes",
+        "translucides",
+        "mousseuses",
+        "purulentes",
+        "hémoptoïques",
+      ]),
+    temperature: yup.number(),
+    poids: yup.number(),
+    syndromeGrippal: yup.boolean(),
+    signesORIHauts: yup.boolean(),
+    anosmie: yup.boolean(),
+    agueusie: yup.boolean(),
+    dyspnee: yup.boolean(),
+    conjonctivite: yup.boolean(),
+    deshydratation: yup.boolean(),
+    diarrhee: yup.boolean(),
+    etatConscience: yup
+      .mixed()
+      .oneOf(["normal", "ralentissement", "somnolence", "comateux"]),
+    frequenceRespi: yup.number(),
+    SPO2Saturometre: yup.string(),
+    SPO2ROTH: yup.mixed().oneOf(["< 10 / 7sec", "< 7 / 5 sec", "> 30"]),
+    PA: yup.string(),
+    pouls: yup.number(),
+    marbrures: yup.boolean(),
+    autre: yup.string(),
+  });
+
+export { patientExamSchema, patientFactorsSchema, patientInfoSchema };
