@@ -1,18 +1,33 @@
-import { Box, Flex, Text } from "rebass";
+import React, { useState, Fragment } from "react";
+import { PatientIdentificationForm } from "./PatientIdentificationForm";
+import { PatientIdentificationView } from "./PatientIdentificationView";
+import { updatePatient } from "../../lib/endpoints";
 
 const PatientIdentification = ({ patient }) => {
+  const [edit, setEdit] = useState(false);
+
+  const handleSubmit = async (values, { setSubmitting }) => {
+    console.log(patient.id);
+    await updatePatient({ id: patient.id, ...values });
+    setSubmitting(false);
+    setEdit(false);
+  };
+
+  const handleEdit = () => {
+    setEdit(true);
+  };
+
   return (
-    <Flex>
-      <Box minWidth="200px" p={1}>
-        <Text>{patient.surname}</Text>
-      </Box>
-      <Box minWidth="200px" p={1}>
-        <Text>{patient.firstname}</Text>
-      </Box>
-      <Box minWidth="200px" p={1}>
-        <Text>{patient.dob}</Text>
-      </Box>
-    </Flex>
+    <Fragment>
+      {edit ? (
+        <PatientIdentificationForm
+          patient={patient}
+          handleSubmit={handleSubmit}
+        />
+      ) : (
+        <PatientIdentificationView patient={patient} handleEdit={handleEdit} />
+      )}
+    </Fragment>
   );
 };
 

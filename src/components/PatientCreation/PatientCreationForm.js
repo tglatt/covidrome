@@ -1,12 +1,12 @@
-import { Form, Formik } from "formik";
 import React from "react";
+import { Form, Formik } from "formik";
 import { Box, Flex, Button } from "rebass";
 
 import { patientInfoSchema } from "../../lib/validationSchemas";
 
-import { Field } from "../../ui";
+import { Field, twoColumnStyle } from "../../ui";
 
-const PatientCreationForm = (props) => {
+const PatientCreationForm = props => {
   const { patient, handleSubmit } = props;
 
   return (
@@ -19,21 +19,27 @@ const PatientCreationForm = (props) => {
         dob: patient ? patient.dob : "",
         phone: patient ? patient.phone : "",
         email: patient ? patient.email : "",
-        physician: patient ? patient.physician : "",
+        physician: patient ? patient.physician : ""
       }}
       validationSchema={patientInfoSchema}
       onSubmit={handleSubmit}
     >
       {({ isSubmitting }) => (
         <Form>
-          <Field name="lastname" label="Nom du patient" />
-          <Field name="firstname" label="Prénom du patient" />
-          <Field name="address" label="Adresse" />
-          <Field name="ssn" label="N° de sécurité sociale" />
-          <Field name="dob" label="Date de naissance" type="date" />
-          <Field name="phone" label="Téléphone" />
-          <Field name="email" label="Courriel" type="email" />
-          <Field name="physician" label="Médecin Généraliste" />
+          <Flex>
+            <Box sx={twoColumnStyle}>
+              <Field name="lastname" label="Nom du patient" />
+              <Field name="firstname" label="Prénom du patient" />
+              <Field name="dob" label="Date de naissance" type="date" />
+              <Field name="ssn" label="N° de sécurité sociale" />
+              <Field name="physician" label="Médecin Généraliste" />
+            </Box>
+            <Box sx={twoColumnStyle}>
+              <Field name="email" label="Courriel" type="email" />
+              <Field name="address" label="Adresse" />
+              <Field name="phone" label="Téléphone" />
+            </Box>
+          </Flex>
           <Flex alignItems="center" justifyContent="flex-end">
             <Box>
               <Button type="submit" disabled={isSubmitting}>
