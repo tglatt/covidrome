@@ -1,20 +1,24 @@
 import Router from "next/router";
-import { Box } from "rebass";
+import { Box, Card } from "rebass";
 import { createPatient } from "../../lib/endpoints";
 import { PatientCreationForm } from "./PatientCreationForm";
+import { Heading3 } from "../../ui";
 
 const PatientCreation = () => {
   const handleSubmit = async (values, { setSubmitting, setStatus }) => {
-    await createPatient(values);
+    const patient = await createPatient(values);
     setSubmitting(false);
 
-    Router.push("/");
+    Router.push(`/patients/${patient.id}`);
   };
 
   return (
-    <Box p={5}>
+    <Card p={5}>
+      <Box mb={2}>
+        <Heading3>Ajout d'un nouveau patient</Heading3>
+      </Box>
       <PatientCreationForm handleSubmit={handleSubmit} />
-    </Box>
+    </Card>
   );
 };
 

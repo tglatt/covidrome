@@ -3,7 +3,7 @@ const createPatient = async (patient) => {
     method: "post",
     body: JSON.stringify(patient),
   });
-  return res;
+  return res.json();
 };
 
 export default createPatient;

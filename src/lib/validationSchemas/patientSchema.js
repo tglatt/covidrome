@@ -1,14 +1,20 @@
 import yup from "./yup";
 
+const patientCreationSchema = yup.object().shape({
+  lastname: yup.string().required(),
+  firstname: yup.string().required(),
+  dob: yup.date().required()
+});
+
 const patientInfoSchema = yup.object().shape({
   lastname: yup.string().required(),
   firstname: yup.string().required(),
-  address: yup.string(),
-  ssn: yup.string().length(13),
   dob: yup.date().required(),
-  phone: yup.string().length(10),
-  email: yup.string().email(),
-  physician: yup.string(),
+  address: yup.string().nullable(),
+  ssn: yup.string().nullable().length(13),
+  phone: yup.string().nullable().length(10),
+  email: yup.string().nullable().email(),
+  physician: yup.string().nullable()
 });
 
 const patientFactorsSchema = yup.object().shape({
@@ -33,7 +39,7 @@ const patientFactorsSchema = yup.object().shape({
   FRSEPasMoyenCommunication: yup.boolean(),
   FRSEAidant: yup.string(),
   FRSERemarques: yup.string(),
-  FRSEPieceConfinement: yup.boolean(),
+  FRSEPieceConfinement: yup.boolean()
 });
 
 const expectorationsChoices = [
@@ -41,14 +47,14 @@ const expectorationsChoices = [
   "translucides",
   "mousseuses",
   "purulentes",
-  "hémoptoïques",
+  "hémoptoïques"
 ];
 
 const etatConscienceChoices = [
   "normal",
   "ralentissement",
   "somnolence",
-  "comateux",
+  "comateux"
 ];
 
 const SPO2ROTHChoices = ["< 10 / 7sec", "< 7 / 5 sec", "> 30"];
@@ -77,7 +83,7 @@ const patientExamSchema = (physicians, nurses) =>
     PA: yup.string(),
     pouls: yup.number(),
     marbrures: yup.boolean(),
-    autre: yup.string(),
+    autre: yup.string()
   });
 
 export {
@@ -87,4 +93,5 @@ export {
   patientFactorsSchema,
   patientInfoSchema,
   SPO2ROTHChoices,
+  patientCreationSchema
 };

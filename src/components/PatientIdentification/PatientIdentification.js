@@ -7,7 +7,6 @@ const PatientIdentification = ({ patient }) => {
   const [edit, setEdit] = useState(false);
 
   const handleSubmit = async (values, { setSubmitting }) => {
-    console.log(patient.id);
     await updatePatient({ id: patient.id, ...values });
     setSubmitting(false);
     setEdit(false);
