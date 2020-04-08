@@ -6,11 +6,36 @@ import { patientFactorsSchema } from "../../lib/validationSchemas";
 import { Card } from "../../ui/Card";
 import { CheckBoxField, Heading3, Textarea, twoColumnStyle } from "../../ui";
 
+const emptyValues = {
+  FRMHTA: false,
+  FRMSup70: false,
+  FRMIMCSup40: false,
+  FRMEnceinte: false,
+  FRMPathologieCardiaque: false,
+  FRMPathologieDiabete: false,
+  FRMPathologieRespiratoireChronique: false,
+  FRMCancerSousTraitement: false,
+  FRMInsRenaleDialysee: false,
+  FRMImmunodepression: false,
+  FRMCirrhoseB: false,
+  FRMThrombose: false,
+  FRMAutre: "",
+  FRMProcheFragile: false,
+  FRSEIsolement: false,
+  FRSEPrecariteSociEco: false,
+  FRSEDifficulteLinguistique: false,
+  FRSETroublesNeuroPsy: false,
+  FRSEPasMoyenCommunication: false,
+  FRSEAidant: "",
+  FRSERemarques: "",
+  FRSEPieceConfinement: false,
+};
+
 const PatientFactors = ({ patient }) => {
   return (
     <Formik
       enableReinitialize
-      initialValues={patient.factors || {}}
+      initialValues={{ ...emptyValues, ...patient.factors }}
       validationSchema={patientFactorsSchema}
       onSubmit={(values, { setSubmitting, setStatus }) => {
         createPatientFactors(patient, values);
