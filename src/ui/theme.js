@@ -34,6 +34,7 @@ export default {
     cardSecondary: "#F8FAFC",
     error: "#FF6966",
     gray: "#dddddf",
+    highlight: "hsla(205,100%,40%,0.125)",
     lightGray: "#555555",
     link: "#007AD9",
     mediumGray: "#818181",
