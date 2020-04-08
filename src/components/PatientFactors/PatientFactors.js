@@ -96,7 +96,9 @@ const PatientFactors = ({ patient }) => {
           </Flex>
           <Flex alignItems="center" justifyContent="flex-end">
             <Box>
-              <Button type="submit">Enregistrer</Button>
+              <Button type="submit" disabled={isSubmitting}>
+                Enregistrer
+              </Button>
             </Box>
           </Flex>
         </Form>
