@@ -3,7 +3,7 @@ import { fetcher } from "../../src/lib/fetcher";
 import { Layout } from "../../src/components/Layout";
 import { PatientIdentification } from "../../src/components/PatientIdentification";
 import { BoxWrapper } from "../../src/ui";
-import { ExamSheet } from "../../src/components/ExamSheet";
+import { PatientFactors } from "../../src/components/PatientFactors";
 
 const PatientPage = ({ patientId }) => {
   const { data: patient, error } = useSWR(
@@ -18,7 +18,7 @@ const PatientPage = ({ patientId }) => {
       {patient && (
         <BoxWrapper>
           <PatientIdentification patient={patient} />
-          <ExamSheet></ExamSheet>
+          <PatientFactors></PatientFactors>
         </BoxWrapper>
       )}
     </Layout>

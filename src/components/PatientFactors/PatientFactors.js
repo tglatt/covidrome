@@ -12,7 +12,7 @@ const CheckBoxField = ({ property, label }) => (
   </Box>
 );
 
-const ExamSheet = props => {
+const PatientFactors = (props) => {
   return (
     <Flex flexDirection="column">
       <Flex>
@@ -80,4 +80,4 @@ const ExamSheet = props => {
   );
 };
 
-export { ExamSheet };
+export { PatientFactors };
