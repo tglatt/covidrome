@@ -17,4 +17,4 @@ const Field = (props) => {
   );
 };
 
-export default Field;
+export { Field };

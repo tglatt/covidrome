@@ -12,11 +12,13 @@ const LinkButton = ({ router, ...props }) => {
         href={props.disabled ? "" : props.href}
         sx={LinkButtonStyle(isActive, props.disabled)}
         {...props}
-      > 
+      >
         {props.children}
       </RebassLink>
     </NextLink>
   );
 };
 
-export default withRouter(LinkButton);
+const routed = withRouter(LinkButton);
+
+export { routed as LinkButton };

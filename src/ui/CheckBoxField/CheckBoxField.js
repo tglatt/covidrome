@@ -16,4 +16,4 @@ const CheckBoxField = (props) => {
   );
 };
 
-export default CheckBoxField;
+export { CheckBoxField };
