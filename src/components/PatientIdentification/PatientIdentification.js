@@ -3,11 +3,11 @@ import { PatientIdentificationForm } from "./PatientIdentificationForm";
 import { PatientIdentificationView } from "./PatientIdentificationView";
 import { updatePatient } from "../../lib/endpoints";
 
-const PatientIdentification = ({ patient }) => {
+const PatientIdentification = ({ patient, mutate }) => {
   const [edit, setEdit] = useState(false);
 
   const handleSubmit = async (values, { setSubmitting }) => {
-    await updatePatient({ id: patient.id, ...values });
+    await mutate(updatePatient({ id: patient.id, ...values }));
     setSubmitting(false);
     setEdit(false);
   };
