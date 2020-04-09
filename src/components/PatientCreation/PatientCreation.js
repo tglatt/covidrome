@@ -9,7 +9,7 @@ const PatientCreation = () => {
     const patient = await createPatient(values);
     setSubmitting(false);
 
-    Router.push(`/patients/${patient.id}?edit=1`);
+    Router.push(`/patients/${patient.id}`);
   };
 
   return (
