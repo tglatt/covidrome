@@ -1,4 +1,5 @@
 import useSWR from "swr";
+import { Box } from "rebass";
 import { Layout } from "../../src/components/Layout";
 import { PatientExam } from "../../src/components/PatientExam";
 import { PatientFactors } from "../../src/components/PatientFactors";
@@ -21,8 +22,12 @@ const PatientPage = ({ patientId }) => {
 
       {patient ? (
         <BoxWrapper>
-          <PatientIdentification patient={patient} mutate={mutate} />
-          <PatientFactors patient={patient} />
+          <Box mb={2}>
+            <PatientIdentification patient={patient} mutate={mutate} />
+          </Box>
+          <Box mb={2}>
+            <PatientFactors patient={patient} />
+          </Box>
           {errorMedecins && <div>Failed to fetch medecins</div>}
           {errorIDEs && <div>Failed to fetch IDEs</div>}
           {medecins && IDEs && (

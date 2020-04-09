@@ -6,10 +6,10 @@ import { content } from "./style";
 
 const FieldLabelValue = ({ label, value }) => (
   <Flex>
-    <Box width={1 / 2}>
+    <Box>
       <FieldLabel label={label} />
     </Box>
-    <Text sx={content}>
+    <Text sx={content} ml={1}>
       {value}
     </Text>
   </Flex>
