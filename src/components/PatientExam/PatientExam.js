@@ -22,7 +22,7 @@ const AddExamLink = ({ handleAddExam }) => (
   </Box>
 );
 
-const PatientExam = ({ patientId, initialEdit }) => {
+const PatientExam = ({ patientId }) => {
   const { data: exams, error, mutate } = useSWR(
     `/api/patients/${patientId}/exams`,
     fetcher
@@ -30,7 +30,7 @@ const PatientExam = ({ patientId, initialEdit }) => {
   const { data: medecins, errorMedecins } = useSWR("/api/medecins", fetcher);
   const { data: IDEs, errorIDEs } = useSWR("/api/IDEs", fetcher);
 
-  const [edit, setEdit] = useState(initialEdit);
+  const [editting, setEditting] = useState([]);
   const [addingExam, setAddingExam] = useState(false);
 
   const handleSubmit = (exam) => async (values, { setSubmitting }) => {
@@ -63,12 +63,19 @@ const PatientExam = ({ patientId, initialEdit }) => {
     await mutate(saveOrUpdateExam(patientId, { ...exam, ...data }));
 
     setSubmitting(false);
-    setEdit(false);
-    setAddingExam(false);
+    if (exam.id) {
+      removeFromEditting(exam.id);
+    } else {
+      setAddingExam(false);
+    }
   };
 
-  const handleEdit = () => {
-    setEdit(true);
+  const removeFromEditting = (examId) => {
+    setEditting(editting.filter((id) => id !== examId));
+  };
+
+  const addToEditting = (examId) => {
+    setEditting([...editting, examId]);
   };
 
   const handleAddingExam = () => {
@@ -103,7 +110,7 @@ const PatientExam = ({ patientId, initialEdit }) => {
       )}
 
       {exams.map((exam) => {
-        return edit ? (
+        return editting.includes(exam.id) ? (
           <PatientExamForm
             key={exam.id}
             exam={exam}
@@ -112,7 +119,11 @@ const PatientExam = ({ patientId, initialEdit }) => {
             handleSubmit={handleSubmit}
           />
         ) : (
-          <PatientExamView key={exam.id} exam={exam} handleEdit={handleEdit} />
+          <PatientExamView
+            key={exam.id}
+            exam={exam}
+            handleEdit={() => addToEditting(exam.id)}
+          />
         );
       })}
     </Fragment>
