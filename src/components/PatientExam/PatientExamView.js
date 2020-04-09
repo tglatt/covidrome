@@ -21,7 +21,7 @@ const PatientExamView = ({ exam, handleEdit }) => {
   console.log("exam", exam);
   return (
     <Card>
-      <Flex flexDirection="column">
+      <Flex ml={1} flexDirection="column">
         <Flex mb={1}>
           <Heading3>
             {`Bilan du ${formatDate(exam.examDate)} par ${exam.physician} / ${
@@ -32,18 +32,16 @@ const PatientExamView = ({ exam, handleEdit }) => {
         </Flex>
         <Flex>
           <Box width={1 / 4}>
-            <Box>
-              <FieldLabelValue
-                value={exam.frequenceRespi}
-                label="fréquence respi X/mn"
-              />
-              <FieldLabelValue
-                value={exam.SPO2Saturometre}
-                label="SPO2 Saturomètre"
-              />
-              <FieldLabelValue value={exam.SPO2ROTH} label="SPO2 ROTH" />
-              <FieldLabelValue value={exam.PA} label="PA" />
-            </Box>
+            <FieldLabelValue
+              value={exam.frequenceRespi}
+              label="fréquence respi X/mn"
+            />
+            <FieldLabelValue
+              value={exam.SPO2Saturometre}
+              label="SPO2 Saturomètre"
+            />
+            <FieldLabelValue value={exam.SPO2ROTH} label="SPO2 ROTH" />
+            <FieldLabelValue value={exam.PA} label="PA" />
           </Box>
           <Box width={1 / 4}>
             <FieldLabelValue value={exam.temperature} label="température" />
