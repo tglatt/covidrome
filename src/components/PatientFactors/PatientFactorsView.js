@@ -26,13 +26,14 @@ const PatientFactorsView = ({ riskFactor, handleEdit }) => {
   const factors = riskFactor ? riskFactor : {};
   return (
     <Card>
+      <Flex alignItems="center">
+        <Heading3 pl={1}>
+          Facteurs de risques médicaux et sociaux-environementaux
+        </Heading3>
+        <EditLink handleEdit={handleEdit} />
+      </Flex>
       <Flex>
         <Box sx={twoColumnStyle}>
-          <Flex mb={1}>
-            <Heading3>Facteurs de risques médicaux</Heading3>
-            <EditLink handleEdit={handleEdit} />
-          </Flex>
-
           <CheckBoxView value={factors.FRMHTA} label="HTA" />
           <CheckBoxView value={factors.FRMSup70} label="âge > 70 ans" />
           <CheckBoxView value={factors.FRMImcSup40} label="IMC > 40" />
@@ -73,10 +74,6 @@ const PatientFactorsView = ({ riskFactor, handleEdit }) => {
           />
         </Box>
         <Box sx={twoColumnStyle}>
-          <Flex mb={1}>
-            <Heading3>Facteurs sociaux-environementaux</Heading3>
-            <EditLink handleEdit={handleEdit} />
-          </Flex>
           <CheckBoxView label="isolement" value={factors.FRSEIsolement} />
           <CheckBoxView
             label="précarité socio-économique"
