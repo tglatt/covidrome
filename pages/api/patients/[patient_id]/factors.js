@@ -1,15 +1,23 @@
-import { Patient } from "../../../../src/models";
+import { Patient, RiskFactor } from "../../../../src/models";
 
 export default async (req, res) => {
   const patientIdAsString = req.query.patient_id;
   const patientId = parseInt(patientIdAsString);
-  const patient = await Patient.query().findById(patientId);
 
   if (req.method === "POST") {
     const data = JSON.parse(req.body);
-    patient.factors = { ...data };
-    res.status(201).json(patient);
-  } else {
-    res.status(400);
+    if (data.id) {
+      await RiskFactor.query()
+        .findById(data.id)
+        .patch({
+          ...data,
+        });
+    } else {
+      await RiskFactor.query().insert({ ...data, patientId });
+    }
   }
+
+  const [riskFactor] = await RiskFactor.query().where({ patientId });
+
+  res.status(200).json(riskFactor || {});
 };

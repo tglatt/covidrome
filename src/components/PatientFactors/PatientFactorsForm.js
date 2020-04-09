@@ -3,37 +3,40 @@ import { Box, Button, Flex } from "rebass";
 import { patientFactorsSchema } from "../../lib/validationSchemas";
 import { Card } from "../../ui/Card";
 import { CheckBoxField, Heading3, Textarea, twoColumnStyle } from "../../ui";
+import { asBoolean } from "../../../src/lib/boolean";
 
-const emptyValues = {
-  FRMHTA: false,
-  FRMSup70: false,
-  FRMIMCSup40: false,
-  FRMEnceinte: false,
-  FRMPathologieCardiaque: false,
-  FRMPathologieDiabete: false,
-  FRMPathologieRespiratoireChronique: false,
-  FRMCancerSousTraitement: false,
-  FRMInsRenaleDialysee: false,
-  FRMImmunodepression: false,
-  FRMCirrhoseB: false,
-  FRMThrombose: false,
-  FRMAutre: "",
-  FRMProcheFragile: false,
-  FRSEIsolement: false,
-  FRSEPrecariteSociEco: false,
-  FRSEDifficulteLinguistique: false,
-  FRSETroublesNeuroPsy: false,
-  FRSEPasMoyenCommunication: false,
-  FRSEAidant: "",
-  FRSERemarques: "",
-  FRSEPieceConfinement: false,
-};
+const initialValues = riskFactor => ({
+  FRMHTA: asBoolean(riskFactor.FRMHTA),
+  FRMSup70: asBoolean(riskFactor.FRMSup70),
+  FRMImcSup40: asBoolean(riskFactor.FRMImcSup40),
+  FRMEnceinte: asBoolean(riskFactor.FRMEnceinte),
+  FRMPathologieCardiaque: asBoolean(riskFactor.FRMPathologieCardiaque),
+  FRMPathologieDiabete: asBoolean(riskFactor.FRMPathologieDiabete),
+  FRMPathologieRespiratoireChronique: asBoolean(
+    riskFactor.FRMPathologieRespiratoireChronique
+  ),
+  FRMCancerSousTraitement: asBoolean(riskFactor.FRMCancerSousTraitement),
+  FRMInsRenaleDialysee: asBoolean(riskFactor.FRMInsRenaleDialysee),
+  FRMImmunoDepression: asBoolean(riskFactor.FRMImmunoDepression),
+  FRMCirrhoseB: asBoolean(riskFactor.FRMCirrhoseB),
+  FRMThrombose: asBoolean(riskFactor.FRMThrombose),
+  FRMAutre: riskFactor.FRMAutre ? riskFactor.FRMAutre : "",
+  FRMProcheFragile: asBoolean(riskFactor.FRMProcheFragile),
+  FRSEIsolement: asBoolean(riskFactor.FRSEIsolement),
+  FRSEPrecariteSociEco: asBoolean(riskFactor.FRSEPrecariteSociEco),
+  FRSEDifficulteLinguistique: asBoolean(riskFactor.FRSEDifficulteLinguistique),
+  FRSETroublesNeuroPsy: asBoolean(riskFactor.FRSETroublesNeuroPsy),
+  FRSEPasMoyenCommunication: asBoolean(riskFactor.FRSEPasMoyenCommunication),
+  FRSEAidant: riskFactor.FRSEAidant ? riskFactor.FRSEAidant : "",
+  FRSERemarques: riskFactor.FRSERemarques ? riskFactor.FRSERemarques : "",
+  FRSEPieceConfinement: asBoolean(riskFactor.FRSEPieceConfinement),
+});
 
-const PatientFactorsForm = ({ patient, handleSubmit }) => {
+const PatientFactorsForm = ({ riskFactor, handleSubmit }) => {
   return (
     <Formik
       enableReinitialize
-      initialValues={{ ...emptyValues, ...patient.factors }}
+      initialValues={initialValues(riskFactor || {})}
       validationSchema={patientFactorsSchema}
       onSubmit={handleSubmit}
     >
@@ -46,7 +49,7 @@ const PatientFactorsForm = ({ patient, handleSubmit }) => {
                 <Box p={1}>
                   <CheckBoxField name="FRMHTA" label="HTA" />
                   <CheckBoxField name="FRMSup70" label="âge > 70 ans" />
-                  <CheckBoxField name="FRMIMCSup40" label="IMC > 40" />
+                  <CheckBoxField name="FRMImcSup40" label="IMC > 40" />
                   <CheckBoxField name="FRMEnceinte" label="femme enceinte" />
                   <CheckBoxField
                     name="FRMPathologieCardiaque"
@@ -57,7 +60,7 @@ const PatientFactorsForm = ({ patient, handleSubmit }) => {
                     label="diabète insulino dépendant ou compliqué"
                   />
                   <CheckBoxField
-                    name="FRMPathologieRepiratoireChronique"
+                    name="FRMPathologieRespiratoireChronique"
                     label="pathologie respiratoire chronique"
                   />
                   <CheckBoxField
@@ -69,7 +72,7 @@ const PatientFactorsForm = ({ patient, handleSubmit }) => {
                     label="insuffisance rénale dialysée"
                   />
                   <CheckBoxField
-                    name="FRMImmunodepression"
+                    name="FRMImmunoDepression"
                     label="immunodépression (médicament, VIH)"
                   />
                   <CheckBoxField

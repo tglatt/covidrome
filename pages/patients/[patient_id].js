@@ -26,7 +26,7 @@ const PatientPage = ({ patientId }) => {
             <PatientIdentification patient={patient} mutate={mutate} />
           </Box>
           <Box mb={2}>
-            <PatientFactors patient={patient} />
+            <PatientFactors patientId={patientId} />
           </Box>
           {errorMedecins && <div>Failed to fetch medecins</div>}
           {errorIDEs && <div>Failed to fetch IDEs</div>}

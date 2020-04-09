@@ -3,8 +3,8 @@ import { Card, twoColumnStyle, Heading3, FieldLabelValue } from "../../ui";
 
 const labelOf = value => (value ? "oui" : "non");
 
-const PatientFactorsView = ({ patient, handleEdit }) => {
-  const factors = patient.factors ? patient.factors : {};
+const PatientFactorsView = ({ riskFactor, handleEdit }) => {
+  const factors = riskFactor ? riskFactor : {};
   return (
     <Card>
       <Flex>
@@ -18,7 +18,7 @@ const PatientFactorsView = ({ patient, handleEdit }) => {
             label="âge > 70 ans"
           />
           <FieldLabelValue
-            value={labelOf(factors.FRMIMCSup40)}
+            value={labelOf(factors.FRMImcSup40)}
             label="IMC > 40"
           />
           <FieldLabelValue
@@ -34,7 +34,7 @@ const PatientFactorsView = ({ patient, handleEdit }) => {
             label="diabète insulino dépendant ou compliqué"
           />
           <FieldLabelValue
-            value={labelOf(factors.FRMPathologieRepiratoireChronique)}
+            value={labelOf(factors.FRMPathologieRespiratoireChronique)}
             label="pathologie respiratoire chronique"
           />
           <FieldLabelValue
@@ -46,7 +46,7 @@ const PatientFactorsView = ({ patient, handleEdit }) => {
             label="insuffisance rénale dialysée"
           />
           <FieldLabelValue
-            value={labelOf(factors.FRMImmunodepression)}
+            value={labelOf(factors.FRMImmunoDepression)}
             label="immunodépression (médicament, VIH)"
           />
           <FieldLabelValue
@@ -57,7 +57,7 @@ const PatientFactorsView = ({ patient, handleEdit }) => {
             value={labelOf(factors.FRMThrombose)}
             label="thrombose"
           />
-          <FieldLabelValue valie={factors.FRMAutre} label="autre" />
+          <FieldLabelValue value={factors.FRMAutre} label="autre" />
           <FieldLabelValue
             value={labelOf(factors.FRMProcheFragile)}
             label="Présence d'un proche fragile au domicile"
@@ -87,10 +87,7 @@ const PatientFactorsView = ({ patient, handleEdit }) => {
             label="pas de moyen de communication"
             value={labelOf(factors.FRSEPasMoyenCommunication)}
           />
-          <FieldLabelValue
-            label="FRSEAidant"
-            value={factors.FRSEPasMoyenCommunication}
-          />
+          <FieldLabelValue label="Aidant éventuel" value={factors.FRSEAidant} />
           <FieldLabelValue label="Remarques" value={factors.FRSERemarques} />
           <FieldLabelValue
             label="Pièce de confinement disponible"
