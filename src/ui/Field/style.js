@@ -10,4 +10,11 @@ const InputStyle = () => {
   };
 };
 
-export { FieldStyle, InputStyle };
+const LabelStyle = () => {
+  return {
+    fontSize: "1",
+    color: "textSecondary",
+  };
+};
+
+export { FieldStyle, InputStyle, LabelStyle };
