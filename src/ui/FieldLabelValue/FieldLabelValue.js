@@ -10,7 +10,7 @@ const FieldLabelValue = ({ label, value }) => (
       <FieldLabel label={label} />
     </Box>
     <Text sx={content} ml={1}>
-      {value}
+      {value ? value : " - "}
     </Text>
   </Flex>
 );

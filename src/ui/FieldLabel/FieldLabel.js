@@ -3,7 +3,7 @@ import { Text } from "rebass";
 
 const FieldLabel = ({ label }) => {
   return (
-    <Text lineHeight="1.5" color="textSecondary">
+    <Text sx={{ fontSize: "1" }} color="textSecondary">
       {label}
     </Text>
   );

@@ -1,7 +1,11 @@
-import { Box, Button, Flex, Link } from "rebass";
-import { Card, twoColumnStyle, Heading3, FieldLabelValue } from "../../ui";
-
-const labelOf = (value) => (value ? "oui" : "non");
+import { Box, Flex, Link } from "rebass";
+import {
+  Card,
+  CheckBoxView,
+  FieldLabelValue,
+  Heading3,
+  twoColumnStyle,
+} from "../../ui";
 
 const EditLink = ({ handleEdit }) => (
   <Box ml={2}>
@@ -29,54 +33,42 @@ const PatientFactorsView = ({ riskFactor, handleEdit }) => {
             <EditLink handleEdit={handleEdit} />
           </Flex>
 
-          <FieldLabelValue value={labelOf(factors.FRMHTA)} label="HTA" />
-          <FieldLabelValue
-            value={labelOf(factors.FRMSup70)}
-            label="âge > 70 ans"
-          />
-          <FieldLabelValue
-            value={labelOf(factors.FRMImcSup40)}
-            label="IMC > 40"
-          />
-          <FieldLabelValue
-            value={labelOf(factors.FRMEnceinte)}
-            label="femme enceinte"
-          />
-          <FieldLabelValue
-            value={labelOf(factors.FRMPathologieCardiaque)}
+          <CheckBoxView value={factors.FRMHTA} label="HTA" />
+          <CheckBoxView value={factors.FRMSup70} label="âge > 70 ans" />
+          <CheckBoxView value={factors.FRMImcSup40} label="IMC > 40" />
+          <CheckBoxView value={factors.FRMEnceinte} label="femme enceinte" />
+          <CheckBoxView
+            value={factors.FRMPathologieCardiaque}
             label="pathologie cardiaque"
           />
-          <FieldLabelValue
-            value={labelOf(factors.FRMPathologieDiabete)}
+          <CheckBoxView
+            value={factors.FRMPathologieDiabete}
             label="diabète insulino dépendant ou compliqué"
           />
-          <FieldLabelValue
-            value={labelOf(factors.FRMPathologieRespiratoireChronique)}
+          <CheckBoxView
+            value={factors.FRMPathologieRespiratoireChronique}
             label="pathologie respiratoire chronique"
           />
-          <FieldLabelValue
-            value={labelOf(factors.FRMCancerSousTraitement)}
+          <CheckBoxView
+            value={factors.FRMCancerSousTraitement}
             label="cancer sous traitement"
           />
-          <FieldLabelValue
-            value={labelOf(factors.FRMInsRenaleDialysee)}
+          <CheckBoxView
+            value={factors.FRMInsRenaleDialysee}
             label="insuffisance rénale dialysée"
           />
-          <FieldLabelValue
-            value={labelOf(factors.FRMImmunoDepression)}
+          <CheckBoxView
+            value={factors.FRMImmunoDepression}
             label="immunodépression (médicament, VIH)"
           />
-          <FieldLabelValue
-            value={labelOf(factors.FRMCirrhoseB)}
+          <CheckBoxView
+            value={factors.FRMCirrhoseB}
             label="cirrhose >= stade B"
           />
-          <FieldLabelValue
-            value={labelOf(factors.FRMThrombose)}
-            label="thrombose"
-          />
+          <CheckBoxView value={factors.FRMThrombose} label="thrombose" />
           <FieldLabelValue value={factors.FRMAutre} label="autre" />
-          <FieldLabelValue
-            value={labelOf(factors.FRMProcheFragile)}
+          <CheckBoxView
+            value={factors.FRMProcheFragile}
             label="Présence d'un proche fragile au domicile"
           />
         </Box>
@@ -85,31 +77,28 @@ const PatientFactorsView = ({ riskFactor, handleEdit }) => {
             <Heading3>Facteurs sociaux-environementaux</Heading3>
             <EditLink handleEdit={handleEdit} />
           </Flex>
-          <FieldLabelValue
-            label="isolement"
-            value={labelOf(factors.FRSEIsolement)}
-          />
-          <FieldLabelValue
+          <CheckBoxView label="isolement" value={factors.FRSEIsolement} />
+          <CheckBoxView
             label="précarité socio-économique"
-            value={labelOf(factors.FRSEPrecariteSociEco)}
+            value={factors.FRSEPrecariteSociEco}
           />
-          <FieldLabelValue
+          <CheckBoxView
             label="difficulté linguistique"
-            value={labelOf(factors.FRSEDifficulteLinguistique)}
+            value={factors.FRSEDifficulteLinguistique}
           />
-          <FieldLabelValue
+          <CheckBoxView
             label="troubles neuro/psy"
-            value={labelOf(factors.FRSETroublesNeuroPsy)}
+            value={factors.FRSETroublesNeuroPsy}
           />
-          <FieldLabelValue
+          <CheckBoxView
             label="pas de moyen de communication"
-            value={labelOf(factors.FRSEPasMoyenCommunication)}
+            value={factors.FRSEPasMoyenCommunication}
           />
           <FieldLabelValue label="Aidant éventuel" value={factors.FRSEAidant} />
           <FieldLabelValue label="Remarques" value={factors.FRSERemarques} />
-          <FieldLabelValue
+          <CheckBoxView
             label="Pièce de confinement disponible"
-            value={labelOf(factors.FRSEPieceConfinement)}
+            value={factors.FRSEPieceConfinement}
           />
         </Box>
       </Flex>

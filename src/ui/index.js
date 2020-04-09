@@ -1,5 +1,6 @@
 export * from "./Card";
 export * from "./CheckBoxField/CheckBoxField";
+export * from "./CheckBoxView/CheckBoxView";
 export * from "./Field/Field";
 export * from "./FieldLabel";
 export * from "./FieldLabelValue";
