@@ -4,4 +4,10 @@ const FieldStyle = (hasError) => {
   };
 };
 
-export { FieldStyle };
+const InputStyle = () => {
+  return {
+    p: "8px",
+  };
+};
+
+export { FieldStyle, InputStyle };

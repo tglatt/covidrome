@@ -1,13 +1,33 @@
-import { Box, Button, Flex } from "rebass";
-import { Card, twoColumnStyle, Heading3, FieldLabelValue } from "../../ui";
+import { Box, Flex, Link } from "rebass";
+import {
+  Card,
+  twoColumnStyle,
+  Heading3,
+  LinkButton,
+  FieldLabelValue,
+} from "../../ui";
 import { formatDate } from "../../lib/dates";
 
 const PatientIdentificationView = ({ patient, handleEdit }) => {
   return (
     <Card>
-      <Heading3>
-        {patient.firstname} {patient.lastname}
-      </Heading3>
+      <Flex alignItems="center">
+        <Heading3 pl={1}>
+          {patient.firstname} {patient.lastname}
+        </Heading3>
+        <Box ml={2}>
+          <Link
+            sx={{
+              cursor: "pointer",
+              fontSize: "0",
+              textDecoration: "underline",
+            }}
+            onClick={handleEdit}
+          >
+            éditer
+          </Link>
+        </Box>
+      </Flex>
       <Flex>
         <Box sx={twoColumnStyle}>
           <FieldLabelValue
@@ -24,11 +44,6 @@ const PatientIdentificationView = ({ patient, handleEdit }) => {
           <FieldLabelValue label="Courriel" value={patient.email} />
           <FieldLabelValue label="Adresse" value={patient.address} />
           <FieldLabelValue label="Téléphone" value={patient.phone} />
-        </Box>
-      </Flex>
-      <Flex alignItems="center" justifyContent="flex-end">
-        <Box>
-          <Button onClick={handleEdit}>Editer</Button>
         </Box>
       </Flex>
     </Card>

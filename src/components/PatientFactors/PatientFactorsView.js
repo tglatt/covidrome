@@ -1,7 +1,22 @@
-import { Box, Button, Flex } from "rebass";
+import { Box, Button, Flex, Link } from "rebass";
 import { Card, twoColumnStyle, Heading3, FieldLabelValue } from "../../ui";
 
-const labelOf = value => (value ? "oui" : "non");
+const labelOf = (value) => (value ? "oui" : "non");
+
+const EditLink = ({ handleEdit }) => (
+  <Box ml={2}>
+    <Link
+      sx={{
+        cursor: "pointer",
+        fontSize: "0",
+        textDecoration: "underline",
+      }}
+      onClick={handleEdit}
+    >
+      éditer
+    </Link>
+  </Box>
+);
 
 const PatientFactorsView = ({ riskFactor, handleEdit }) => {
   const factors = riskFactor ? riskFactor : {};
@@ -9,9 +24,11 @@ const PatientFactorsView = ({ riskFactor, handleEdit }) => {
     <Card>
       <Flex>
         <Box sx={twoColumnStyle}>
-          <Box mb={1}>
+          <Flex mb={1}>
             <Heading3>Facteurs de risques médicaux</Heading3>
-          </Box>
+            <EditLink handleEdit={handleEdit} />
+          </Flex>
+
           <FieldLabelValue value={labelOf(factors.FRMHTA)} label="HTA" />
           <FieldLabelValue
             value={labelOf(factors.FRMSup70)}
@@ -64,9 +81,10 @@ const PatientFactorsView = ({ riskFactor, handleEdit }) => {
           />
         </Box>
         <Box sx={twoColumnStyle}>
-          <Box mb={1}>
+          <Flex mb={1}>
             <Heading3>Facteurs sociaux-environementaux</Heading3>
-          </Box>
+            <EditLink handleEdit={handleEdit} />
+          </Flex>
           <FieldLabelValue
             label="isolement"
             value={labelOf(factors.FRSEIsolement)}
@@ -93,11 +111,6 @@ const PatientFactorsView = ({ riskFactor, handleEdit }) => {
             label="Pièce de confinement disponible"
             value={labelOf(factors.FRSEPieceConfinement)}
           />
-        </Box>
-      </Flex>
-      <Flex alignItems="center" justifyContent="flex-end">
-        <Box>
-          <Button onClick={handleEdit}>Editer</Button>
         </Box>
       </Flex>
     </Card>

@@ -4,8 +4,8 @@ import { Card as RebassCard } from 'rebass';
 const Card = (props) => (
   <RebassCard
     sx={{
-      px: 3,
-      py: 2,
+      px: 1,
+      py: 1,
     }}
     {...props}
   />
