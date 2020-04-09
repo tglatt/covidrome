@@ -18,7 +18,6 @@ const EditLink = ({ handleEdit }) => (
 );
 
 const PatientExamView = ({ exam, handleEdit }) => {
-  console.log("exam", exam);
   return (
     <Card>
       <Flex ml={1} flexDirection="column">

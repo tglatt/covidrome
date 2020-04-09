@@ -2,7 +2,7 @@ import { Fragment, useState } from "react";
 import useSWR from "swr";
 import { PatientExamForm } from "./PatientExamForm.js";
 import { PatientExamView } from "./PatientExamView.js";
-import { addExam, saveExam } from "../../lib/endpoints";
+import { saveOrUpdateExam } from "../../lib/endpoints";
 import { fetcher } from "../../lib/fetcher";
 import { asBoolean } from "../../../src/lib/boolean";
 
@@ -42,11 +42,8 @@ const PatientExam = ({ patientId, initialEdit }) => {
       marbrures: asBoolean(values.marbrures),
       autre: values.autre ? values.autre : null,
     };
-    if (exam.id) {
-      await saveExam(patientId, { ...exam, ...data });
-    } else {
-      await addExam(patientId, { ...exam, ...data });
-    }
+
+    await mutate(saveOrUpdateExam(patientId, { ...exam, ...data }));
 
     setSubmitting(false);
     setEdit(false);
@@ -72,7 +69,6 @@ const PatientExam = ({ patientId, initialEdit }) => {
   return (
     <Fragment>
       {exams.map((exam) => {
-        console.log("exam map", exam);
         return edit ? (
           <PatientExamForm
             key={exam.id}

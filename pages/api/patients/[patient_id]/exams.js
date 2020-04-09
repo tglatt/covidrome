@@ -6,7 +6,15 @@ export default async (req, res) => {
 
   if (req.method === "POST") {
     const data = JSON.parse(req.body);
-    await Exam.query().insert({ ...data, patientId });
+    if (data.id) {
+      await Exam.query()
+        .findById(data.id)
+        .patch({
+          ...data,
+        });
+    } else {
+      await Exam.query().insert({ ...data, patientId });
+    }
   }
 
   const exams = await Exam.query().where({ patientId });
