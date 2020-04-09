@@ -52,7 +52,7 @@ const PatientExamForm = ({ exam, medecins, IDEs, handleSubmit }) => {
       onSubmit={handleSubmit(exam)}
     >
       {({ isSubmitting }) => (
-        <Card>
+        <Card mb={1}>
           <Form>
             <Heading3 ml={3}>Bilan</Heading3>
             <Flex>

@@ -1,10 +1,26 @@
 import { Fragment, useState } from "react";
+import { Box, Flex, Link } from "rebass";
 import useSWR from "swr";
 import { PatientExamForm } from "./PatientExamForm.js";
 import { PatientExamView } from "./PatientExamView.js";
 import { saveOrUpdateExam } from "../../lib/endpoints";
 import { fetcher } from "../../lib/fetcher";
 import { asBoolean } from "../../../src/lib/boolean";
+
+const AddExamLink = ({ handleAddExam }) => (
+  <Box ml={2}>
+    <Link
+      sx={{
+        cursor: "pointer",
+        fontSize: "1",
+        textDecoration: "underline",
+      }}
+      onClick={handleAddExam}
+    >
+      ajouter un bilan
+    </Link>
+  </Box>
+);
 
 const PatientExam = ({ patientId, initialEdit }) => {
   const { data: exams, error, mutate } = useSWR(
@@ -15,6 +31,7 @@ const PatientExam = ({ patientId, initialEdit }) => {
   const { data: IDEs, errorIDEs } = useSWR("/api/IDEs", fetcher);
 
   const [edit, setEdit] = useState(initialEdit);
+  const [addingExam, setAddingExam] = useState(false);
 
   const handleSubmit = (exam) => async (values, { setSubmitting }) => {
     const data = {
@@ -47,10 +64,15 @@ const PatientExam = ({ patientId, initialEdit }) => {
 
     setSubmitting(false);
     setEdit(false);
+    setAddingExam(false);
   };
 
   const handleEdit = () => {
     setEdit(true);
+  };
+
+  const handleAddingExam = () => {
+    setAddingExam(true);
   };
 
   if (!exams || !medecins || !IDEs) {
@@ -68,25 +90,10 @@ const PatientExam = ({ patientId, initialEdit }) => {
 
   return (
     <Fragment>
-      {exams.length ? (
-        exams.map((exam) => {
-          return edit ? (
-            <PatientExamForm
-              key={exam.id}
-              exam={exam}
-              medecins={medecins}
-              IDEs={IDEs}
-              handleSubmit={handleSubmit}
-            />
-          ) : (
-            <PatientExamView
-              key={exam.id}
-              exam={exam}
-              handleEdit={handleEdit}
-            />
-          );
-        })
-      ) : (
+      <Flex justifyContent="flex-end" mb={1}>
+        <AddExamLink handleAddExam={handleAddingExam} />
+      </Flex>
+      {(exams.length === 0 || addingExam) && (
         <PatientExamForm
           exam={{}}
           medecins={medecins}
@@ -94,6 +101,20 @@ const PatientExam = ({ patientId, initialEdit }) => {
           handleSubmit={handleSubmit}
         />
       )}
+
+      {exams.map((exam) => {
+        return edit ? (
+          <PatientExamForm
+            key={exam.id}
+            exam={exam}
+            medecins={medecins}
+            IDEs={IDEs}
+            handleSubmit={handleSubmit}
+          />
+        ) : (
+          <PatientExamView key={exam.id} exam={exam} handleEdit={handleEdit} />
+        );
+      })}
     </Fragment>
   );
 };
