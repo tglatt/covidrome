@@ -1,6 +1,7 @@
 import NextLink from "next/link";
 import { Box, Card, Flex, Text } from "rebass";
 import { patientListItem } from "./style";
+import { formatDate } from "../../lib/dates";
 
 const PatientListItem = ({ patient }) => (
   <NextLink href="/patients/[patient_id]" as={`/patients/${patient.id}`}>
@@ -13,7 +14,7 @@ const PatientListItem = ({ patient }) => (
           <Text>{patient.firstname}</Text>
         </Box>
         <Box width={1 / 3}>
-          <Text>{patient.dob}</Text>
+          <Text>{formatDate(patient.dob)}</Text>
         </Box>
       </Flex>
     </Card>
