@@ -18,16 +18,17 @@ $ yarn build
 
 ### Development
 
+To start the dev server with hot reloading
+
 ```sh
-# start db
-$ docker-compose up --build
-# migrate
-$ yarn run knex migrate:latest
+$ yarn dev
+```
+
+To add some test data, you can run
+
+```sh
 # migrate
 $ yarn run knex seed:run
-
-# start
-$ yarn dev
 ```
 
 ### Build and run
