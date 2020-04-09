@@ -1,102 +1,82 @@
-import Router from "next/router";
-import { Form, Formik } from "formik";
-import { Box, Button, Flex } from "rebass";
-import { createPatientExam } from "../../lib/endpoints";
-import {
-  etatConscienceChoices,
-  expectorationsChoices,
-  patientExamSchema,
-  SPO2ROTHChoices,
-} from "../../lib/validationSchemas";
-import { CheckBoxField, Field, Select, Textarea } from "../../ui";
+import { Fragment, useState } from "react";
+import useSWR from "swr";
+import { PatientExamForm } from "./PatientExamForm.js";
+import { PatientExamView } from "./PatientExamView.js";
+import { saveOrUpdateExam } from "../../lib/endpoints";
+import { fetcher } from "../../lib/fetcher";
+import { asBoolean } from "../../../src/lib/boolean";
 
-const emptyValues = {
-  examDate: "",
-  physician: "",
-  nurse: "",
-  toux: false,
-  expectorations: "",
-  temperature: "",
-  poids: "",
-  syndromeGrippal: false,
-  signesORIHauts: false,
-  anosmie: false,
-  agueusie: false,
-  dyspnee: false,
-  conjonctivite: false,
-  deshydratation: false,
-  diarrhee: false,
-  etatConscience: "",
-  frequenceRespi: "",
-  SPO2Saturometre: "",
-  SPO2ROTH: "",
-  PA: "",
-  pouls: "",
-  marbrures: false,
-  autre: "",
-};
+const PatientExam = ({ patientId, initialEdit }) => {
+  const { data: exam, error, mutate } = useSWR(
+    `/api/patients/${patientId}/exam`,
+    fetcher
+  );
+  const { data: medecins, errorMedecins } = useSWR("/api/medecins", fetcher);
+  const { data: IDEs, errorIDEs } = useSWR("/api/IDEs", fetcher);
 
-const PatientExam = ({ patient, medecins, IDEs }) => {
+  const [edit, setEdit] = useState(initialEdit);
+
+  const handleSubmit = async (values, { setSubmitting }) => {
+    const data = {
+      examDate: values.examDate ? values.examDate : null,
+      physician: values.physician ? values.physician : null,
+      nurse: values.nurse ? values.nurse : null,
+      toux: asBoolean(values.toux),
+      expectorations: values.expectorations ? values.expectorations : null,
+      temperature: values.temperature ? values.temperature : null,
+      poids: values.poids ? values.poids : null,
+      syndromeGrippal: asBoolean(values.syndromeGrippal),
+      signesORIHauts: asBoolean(values.signesORIHauts),
+      anosmie: asBoolean(values.anosmie),
+      agueusie: asBoolean(values.agueusie),
+      dyspnee: asBoolean(values.dyspnee),
+      conjonctivite: asBoolean(values.conjonctivite),
+      deshydratation: asBoolean(values.deshydratation),
+      diarrhee: asBoolean(values.diarrhee),
+      etatConscience: values.etatConscience ? values.etatConscience : null,
+      frequenceRespi: values.frequenceRespi ? values.frequenceRespi : null,
+      SPO2Saturometre: values.SPO2Saturometre ? values.SPO2Saturometre : null,
+      SPO2ROTH: values.SPO2ROTH ? values.SPO2ROTH : null,
+      PA: values.PA ? values.PA : null,
+      pouls: values.pouls ? values.pouls : null,
+      marbrures: asBoolean(values.marbrures),
+      autre: values.autre ? values.autre : null,
+    };
+    await mutate(saveOrUpdateExam(patientId, { ...exam, ...data }));
+    setSubmitting(false);
+    setEdit(false);
+  };
+
+  const handleEdit = () => {
+    setEdit(true);
+  };
+
+  if (!exam || !medecins || !IDEs) {
+    return <div>loading...</div>;
+  }
+  if (error) {
+    return <div>error while fetching exam</div>;
+  }
+  if (errorMedecins) {
+    return <div>error while fetching medecins</div>;
+  }
+  if (errorIDEs) {
+    return <div>error while fetching IDEs</div>;
+  }
+
   return (
-    <Formik
-      enableReinitialize
-      // TODO: allow editing an exam from a list of exams
-      initialValues={{
-        ...emptyValues,
-        ...(patient.exams ? patient.exams[0] : {}),
-      }}
-      validationSchema={patientExamSchema(medecins || [], IDEs || [])}
-      onSubmit={(values, { setSubmitting, setStatus }) => {
-        createPatientExam(patient, values);
-        setSubmitting(false);
-
-        Router.push("/");
-      }}
-    >
-      {({ isSubmitting }) => (
-        <Form>
-          <Field name="examDate" label="Date du bilan" type="date" />
-          <Select name="physician" label="médecin" choices={medecins} />
-          <Select name="nurse" label="IDE" choices={IDEs} />
-          <CheckBoxField name="toux" label="toux" />
-          <Select
-            name="expectorations"
-            label="expectorations (aspect)"
-            choices={expectorationsChoices}
-          />
-          <Field name="temperature" label="température" />
-          <Field name="poids" label="poids" />
-          <CheckBoxField name="syndromeGrippal" label="syndrôme grippal" />
-          <CheckBoxField name="signesORIHauts" label="signes ORI hauts" />
-          <CheckBoxField name="anosmie" label="anosmie" />
-          <CheckBoxField name="agueusie" label="agueusie" />
-          <CheckBoxField name="dyspnee" label="dyspnee" />
-          <CheckBoxField name="conjonctivite" label="conjonctivite" />
-          <CheckBoxField name="deshydratation" label="déshydrataion" />
-          <CheckBoxField name="diarrhee" label="diarrhée" />
-          <Select
-            name="etatConscience"
-            label="état de conscience"
-            choices={etatConscienceChoices}
-          />
-          <Field name="frequenceRespi" label="fréquence respi X/mn" />
-          <Field name="SPO2Saturometre" label="SPO2 Saturomètre" />
-          <Select name="SPO2ROTH" label="SPO2 ROTH" choices={SPO2ROTHChoices} />
-          <Field name="PA" label="PA" />
-          <Field name="pouls" label="pouls" />
-          <CheckBoxField name="marbrures" label="marbrures" />
-          <Textarea name="autre" label="autre" />
-
-          <Flex alignItems="center" justifyContent="flex-end">
-            <Box>
-              <Button type="submit" disabled={isSubmitting}>
-                Enregistrer
-              </Button>
-            </Box>
-          </Flex>
-        </Form>
+    <Fragment>
+      {edit ? (
+        <PatientExamForm
+          exam={exam}
+          medecins={medecins}
+          IDEs={IDEs}
+          handleSubmit={handleSubmit}
+        />
+      ) : (
+        <PatientExamView exam={exam} handleEdit={handleEdit} />
       )}
-    </Formik>
+    </Fragment>
   );
 };
 

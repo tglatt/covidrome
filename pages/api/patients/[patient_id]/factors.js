@@ -1,4 +1,4 @@
-import { Patient, RiskFactor } from "../../../../src/models";
+import { RiskFactor } from "../../../../src/models";
 
 export default async (req, res) => {
   const patientIdAsString = req.query.patient_id;
