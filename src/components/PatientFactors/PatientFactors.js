@@ -1,4 +1,4 @@
-import { Fragment, useState, useEffect } from "react";
+import { Fragment, useState } from "react";
 import useSWR from "swr";
 import { PatientFactorsForm } from "./PatientFactorsForm";
 import { PatientFactorsView } from "./PatientFactorsView";
@@ -6,17 +6,13 @@ import { saveOrUpdateRiskFactor } from "../../lib/endpoints";
 import { fetcher } from "../../lib/fetcher";
 import { asBoolean } from "../../../src/lib/boolean";
 
-const PatientFactors = ({ patientId }) => {
-  const { data: riskFactor, loading, error, mutate } = useSWR(
+const PatientFactors = ({ patientId, initialEdit }) => {
+  const { data: riskFactor, error, mutate } = useSWR(
     `/api/patients/${patientId}/factors`,
     fetcher
   );
 
-  const [edit, setEdit] = useState(false);
-
-  useEffect(() => {
-    setEdit(!riskFactor || !riskFactor.id);
-  }, []);
+  const [edit, setEdit] = useState(initialEdit);
 
   const handleSubmit = async (values, { setSubmitting }) => {
     const data = {
@@ -55,7 +51,7 @@ const PatientFactors = ({ patientId }) => {
     setEdit(true);
   };
 
-  if (loading) {
+  if (!riskFactor) {
     return <div>loading...</div>;
   }
   if (error) {
