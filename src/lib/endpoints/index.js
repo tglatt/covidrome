@@ -1,11 +1,13 @@
+import addExam from "./addExam";
 import createPatient from "./createPatient";
-import updatePatient from "./updatePatient";
-import saveOrUpdateExam from "./saveOrUpdateExam";
+import saveExam from "./saveExam";
 import saveOrUpdateRiskFactor from "./saveOrUpdateRiskFactor";
+import updatePatient from "./updatePatient";
 
 export {
+  addExam,
   createPatient,
   updatePatient,
-  saveOrUpdateExam,
+  saveExam,
   saveOrUpdateRiskFactor,
 };

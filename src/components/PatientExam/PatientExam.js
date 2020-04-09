@@ -2,13 +2,13 @@ import { Fragment, useState } from "react";
 import useSWR from "swr";
 import { PatientExamForm } from "./PatientExamForm.js";
 import { PatientExamView } from "./PatientExamView.js";
-import { saveOrUpdateExam } from "../../lib/endpoints";
+import { addExam, saveExam } from "../../lib/endpoints";
 import { fetcher } from "../../lib/fetcher";
 import { asBoolean } from "../../../src/lib/boolean";
 
 const PatientExam = ({ patientId, initialEdit }) => {
-  const { data: exam, error, mutate } = useSWR(
-    `/api/patients/${patientId}/exam`,
+  const { data: exams, error, mutate } = useSWR(
+    `/api/patients/${patientId}/exams`,
     fetcher
   );
   const { data: medecins, errorMedecins } = useSWR("/api/medecins", fetcher);
@@ -16,7 +16,7 @@ const PatientExam = ({ patientId, initialEdit }) => {
 
   const [edit, setEdit] = useState(initialEdit);
 
-  const handleSubmit = async (values, { setSubmitting }) => {
+  const handleSubmit = (exam) => async (values, { setSubmitting }) => {
     const data = {
       examDate: values.examDate ? values.examDate : null,
       physician: values.physician ? values.physician : null,
@@ -42,7 +42,12 @@ const PatientExam = ({ patientId, initialEdit }) => {
       marbrures: asBoolean(values.marbrures),
       autre: values.autre ? values.autre : null,
     };
-    await mutate(saveOrUpdateExam(patientId, { ...exam, ...data }));
+    if (exam.id) {
+      await saveExam(patientId, { ...exam, ...data });
+    } else {
+      await addExam(patientId, { ...exam, ...data });
+    }
+
     setSubmitting(false);
     setEdit(false);
   };
@@ -51,7 +56,7 @@ const PatientExam = ({ patientId, initialEdit }) => {
     setEdit(true);
   };
 
-  if (!exam || !medecins || !IDEs) {
+  if (!exams || !medecins || !IDEs) {
     return <div>loading...</div>;
   }
   if (error) {
@@ -66,16 +71,20 @@ const PatientExam = ({ patientId, initialEdit }) => {
 
   return (
     <Fragment>
-      {edit ? (
-        <PatientExamForm
-          exam={exam}
-          medecins={medecins}
-          IDEs={IDEs}
-          handleSubmit={handleSubmit}
-        />
-      ) : (
-        <PatientExamView exam={exam} handleEdit={handleEdit} />
-      )}
+      {exams.map((exam) => {
+        console.log("exam map", exam);
+        return edit ? (
+          <PatientExamForm
+            key={exam.id}
+            exam={exam}
+            medecins={medecins}
+            IDEs={IDEs}
+            handleSubmit={handleSubmit}
+          />
+        ) : (
+          <PatientExamView key={exam.id} exam={exam} handleEdit={handleEdit} />
+        );
+      })}
     </Fragment>
   );
 };

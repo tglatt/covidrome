@@ -49,7 +49,7 @@ const PatientExamForm = ({ exam, medecins, IDEs, handleSubmit }) => {
       enableReinitialize
       initialValues={initialValues(exam) || {}}
       validationSchema={patientExamSchema(medecins || [], IDEs || [])}
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(exam)}
     >
       {({ isSubmitting }) => (
         <Card>

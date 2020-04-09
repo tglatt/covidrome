@@ -5,6 +5,7 @@ import { formatDate } from "../../lib/dates";
 const labelOf = (value) => (value ? "oui" : "non");
 
 const PatientExamView = ({ exam, handleEdit }) => {
+  console.log("exam", exam);
   return (
     <Card>
       <Flex>
