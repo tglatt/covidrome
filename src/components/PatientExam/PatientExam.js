@@ -68,19 +68,32 @@ const PatientExam = ({ patientId, initialEdit }) => {
 
   return (
     <Fragment>
-      {exams.map((exam) => {
-        return edit ? (
-          <PatientExamForm
-            key={exam.id}
-            exam={exam}
-            medecins={medecins}
-            IDEs={IDEs}
-            handleSubmit={handleSubmit}
-          />
-        ) : (
-          <PatientExamView key={exam.id} exam={exam} handleEdit={handleEdit} />
-        );
-      })}
+      {exams.length ? (
+        exams.map((exam) => {
+          return edit ? (
+            <PatientExamForm
+              key={exam.id}
+              exam={exam}
+              medecins={medecins}
+              IDEs={IDEs}
+              handleSubmit={handleSubmit}
+            />
+          ) : (
+            <PatientExamView
+              key={exam.id}
+              exam={exam}
+              handleEdit={handleEdit}
+            />
+          );
+        })
+      ) : (
+        <PatientExamForm
+          exam={{}}
+          medecins={medecins}
+          IDEs={IDEs}
+          handleSubmit={handleSubmit}
+        />
+      )}
     </Fragment>
   );
 };
