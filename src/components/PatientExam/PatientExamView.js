@@ -1,83 +1,86 @@
-import { Box, Button, Flex } from "rebass";
-import { Card, Heading3, FieldLabelValue, twoColumnStyle } from "../../ui";
+import { Box, Flex, Text, Link } from "rebass";
+import { Card, Heading3, FieldLabelValue, CheckBoxView } from "../../ui";
 import { formatDate } from "../../lib/dates";
 
-const labelOf = (value) => (value ? "oui" : "non");
+const EditLink = ({ handleEdit }) => (
+  <Box ml={2}>
+    <Link
+      sx={{
+        cursor: "pointer",
+        fontSize: "0",
+        textDecoration: "underline",
+      }}
+      onClick={handleEdit}
+    >
+      éditer
+    </Link>
+  </Box>
+);
 
 const PatientExamView = ({ exam, handleEdit }) => {
   console.log("exam", exam);
   return (
     <Card>
-      <Flex>
-        <Box sx={twoColumnStyle}>
-          <Heading3>Examen</Heading3>
-          <Box p={1}>
-            <FieldLabelValue
-              label="Date du bilan"
-              value={formatDate(exam.examDate)}
-            />
-            <FieldLabelValue value={exam.physician} label="médecin" />
-            <FieldLabelValue value={exam.nurse} label="IDE" />
-            <FieldLabelValue value={labelOf(exam.toux)} label="toux" />
+      <Flex flexDirection="column">
+        <Flex mb={1}>
+          <Heading3>
+            {`Bilan du ${formatDate(exam.examDate)} par ${exam.physician} / ${
+              exam.nurse
+            }`}
+          </Heading3>
+          <EditLink handleEdit={handleEdit} />
+        </Flex>
+        <Flex>
+          <Box width={1 / 4}>
+            <Box>
+              <FieldLabelValue
+                value={exam.frequenceRespi}
+                label="fréquence respi X/mn"
+              />
+              <FieldLabelValue
+                value={exam.SPO2Saturometre}
+                label="SPO2 Saturomètre"
+              />
+              <FieldLabelValue value={exam.SPO2ROTH} label="SPO2 ROTH" />
+              <FieldLabelValue value={exam.PA} label="PA" />
+            </Box>
+          </Box>
+          <Box width={1 / 4}>
+            <FieldLabelValue value={exam.temperature} label="température" />
+            <FieldLabelValue value={exam.poids} label="poids" />
+            <FieldLabelValue value={exam.pouls} label="pouls" />
             <FieldLabelValue
               value={exam.expectorations}
               label="expectorations (aspect)"
             />
-            <FieldLabelValue value={exam.temperature} label="température" />
-            <FieldLabelValue value={exam.poids} label="poids" />
-            <FieldLabelValue
-              value={labelOf(exam.syndromeGrippal)}
-              label="syndrôme grippal"
-            />
-            <FieldLabelValue
-              value={labelOf(exam.signesORIHauts)}
-              label="signes ORI hauts"
-            />
-            <FieldLabelValue value={labelOf(exam.anosmie)} label="anosmie" />
-            <FieldLabelValue value={labelOf(exam.agueusie)} label="agueusie" />
-            <FieldLabelValue value={labelOf(exam.dyspnee)} label="dyspnee" />
-            <FieldLabelValue
-              value={labelOf(exam.conjonctivite)}
-              label="conjonctivite"
-            />
-            <FieldLabelValue
-              value={labelOf(exam.deshydratation)}
-              label="déshydrataion"
-            />
-            <FieldLabelValue value={labelOf(exam.diarrhee)} label="diarrhée" />
-          </Box>
-        </Box>
-        <Box sx={twoColumnStyle}>
-          <Heading3>Examen</Heading3>
-          <Box p={1}>
             <FieldLabelValue
               value={exam.etatConscience}
               label="état de conscience"
             />
-            <FieldLabelValue
-              value={exam.frequenceRespi}
-              label="fréquence respi X/mn"
+          </Box>
+          <Box width={1 / 4}>
+            <CheckBoxView value={exam.toux} label="toux" />
+
+            <CheckBoxView
+              value={exam.syndromeGrippal}
+              label="syndrôme grippal"
             />
-            <FieldLabelValue
-              value={exam.SPO2Saturometre}
-              label="SPO2 Saturomètre"
+            <CheckBoxView
+              value={exam.signesORIHauts}
+              label="signes ORI hauts"
             />
-            <FieldLabelValue value={exam.SPO2ROTH} label="SPO2 ROTH" />
-            <FieldLabelValue value={exam.PA} label="PA" />
-            <FieldLabelValue value={exam.pouls} label="pouls" />
-            <FieldLabelValue
-              value={labelOf(exam.marbrures)}
-              label="marbrures"
-            />
+            <CheckBoxView value={exam.anosmie} label="anosmie" />
+            <CheckBoxView value={exam.agueusie} label="agueusie" />
+          </Box>
+          <Box width={1 / 4}>
+            <CheckBoxView value={exam.dyspnee} label="dyspnee" />
+            <CheckBoxView value={exam.conjonctivite} label="conjonctivite" />
+            <CheckBoxView value={exam.deshydratation} label="déshydrataion" />
+            <CheckBoxView value={exam.diarrhee} label="diarrhée" />
+            <CheckBoxView value={exam.marbrures} label="marbrures" />
             <FieldLabelValue value={exam.autre} label="autre" />
           </Box>
-        </Box>
-      </Flex>
-
-      <Flex alignItems="center" justifyContent="flex-end">
-        <Box>
-          <Button onClick={handleEdit}>Editer</Button>
-        </Box>
+        </Flex>
       </Flex>
     </Card>
   );

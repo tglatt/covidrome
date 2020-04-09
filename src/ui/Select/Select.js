@@ -2,6 +2,7 @@ import React from "react";
 import { useField } from "formik";
 import { Box } from "rebass";
 import { Label, Select as RebassSelect } from "@rebass/forms";
+import { SelectStyle } from "./style";
 
 const Select = ({ choices, ...props }) => {
   const [field, meta] = useField({ type: "select", ...props });
@@ -10,7 +11,7 @@ const Select = ({ choices, ...props }) => {
   return (
     <Box>
       <Label htmlFor={field.name}>{props.label}</Label>
-      <RebassSelect {...field} {...props}>
+      <RebassSelect {...field} {...props} sx={SelectStyle}>
         <option />
         {choices.map((name) => (
           <option key={name}>{name}</option>
