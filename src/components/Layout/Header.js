@@ -9,7 +9,7 @@ const Header = () => {
     <Flex alignItems="center" flexWrap="wrap" justifyContent="space-between">
       <NextLink href="/" passHref>
         <Box p={1} sx={headerLink}>
-          <Logo hasTitle title="CoviDrome" />
+          <Logo hasTitle title="CoronaVille" />
         </Box>
       </NextLink>
     </Flex>

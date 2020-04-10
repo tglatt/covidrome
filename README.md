@@ -1,4 +1,9 @@
-# covidrome
+# coronaville
+
+The website is previewable at https://coronaville.agopian.info/.
+
+!!! DO NOT USE FOR REAL MEDICAL DATA !!!
+!!! NE PAS UTILISER POUR DES DONNEES MÉDICALES RÉELLES !!!
 
 ## Installation
 
