@@ -97,9 +97,11 @@ const PatientExam = ({ patientId }) => {
 
   return (
     <Fragment>
-      <Flex justifyContent="flex-end" mb={1}>
-        <AddExamLink handleAddExam={handleAddingExam} />
-      </Flex>
+      {!addingExam && (
+        <Flex justifyContent="flex-end" mb={1}>
+          <AddExamLink handleAddExam={handleAddingExam} />
+        </Flex>
+      )}
       {(exams.length === 0 || addingExam) && (
         <PatientExamForm
           exam={{}}
