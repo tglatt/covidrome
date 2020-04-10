@@ -16,9 +16,10 @@ import {
   twoColumnStyle,
 } from "../../ui";
 import { asBoolean } from "../../../src/lib/boolean";
+import { asDateString } from "../../../src/lib/dates";
 
 const initialValues = (exam) => ({
-  examDate: exam.examDate ? exam.examDate : "",
+  examDate: (exam.examDate && asDateString(exam.examDate)) || "",
   physician: exam.physician ? exam.physician : "",
   nurse: exam.nurse ? exam.nurse : "",
   toux: asBoolean(exam.toux),

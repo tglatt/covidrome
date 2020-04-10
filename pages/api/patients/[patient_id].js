@@ -10,7 +10,7 @@ export default async (req, res) => {
       .findById(patientId)
       .patch({
         ...patient,
-        dob: (patient.dob && new Date(patient.dob)) || "",
+        dob: (patient.dob && new Date(patient.dob)) || null,
       });
   }
   const patient = await Patient.query().findById(patientId);

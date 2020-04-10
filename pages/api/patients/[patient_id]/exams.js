@@ -6,14 +6,18 @@ export default async (req, res) => {
 
   if (req.method === "POST") {
     const data = JSON.parse(req.body);
+    const formattedData = {
+      ...data,
+      examDate: (data.examDate && new Date(data.examDate)) || null,
+    };
     if (data.id) {
       await Exam.query()
         .findById(data.id)
         .patch({
-          ...data,
+          ...formattedData,
         });
     } else {
-      await Exam.query().insert({ ...data, patientId });
+      await Exam.query().insert({ ...formattedData, patientId });
     }
   }
 
