@@ -8,7 +8,8 @@
   "scripts": {
     "dev": "yarn run knex migrate:latest && next",
     "build": "next build",
-    "start": "yarn run knex migrate:latest && next start"
+    "start": "yarn run knex migrate:latest && next start",
+    "deploy": "gh-pages --dist . --remote deploy"
   },
   "dependencies": {
     "@rebass/forms": "^4.0.6",
@@ -24,5 +25,8 @@
     "swr": "^0.2.0",
     "theme-ui": "^0.3.1",
     "yup": "^0.28.3"
+  },
+  "devDependencies": {
+    "gh-pages": "^2.2.0"
   }
 }

@@ -6,7 +6,7 @@ module.exports = {
   client: DATABASE_CLIENT,
   connection:
     DATABASE_CLIENT === "sqlite3"
-      ? process.env.DATABASE_FILENAME || "db.sqlite"
+      ? process.env.DATABASE_FILENAME || ".db.sqlite"
       : process.env.DATABASE_URL,
   useNullAsDefault: DATABASE_CLIENT === "sqlite3",
   migrations: {
