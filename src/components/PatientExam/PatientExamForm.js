@@ -20,12 +20,12 @@ import { asDateString } from "../../../src/lib/dates";
 
 const initialValues = (exam) => ({
   examDate: (exam.examDate && asDateString(exam.examDate)) || "",
-  physician: exam.physician ? exam.physician : "",
-  nurse: exam.nurse ? exam.nurse : "",
+  physician: exam.physician || "",
+  nurse: exam.nurse || "",
   toux: asBoolean(exam.toux),
-  expectorations: exam.expectorations ? exam.expectorations : "",
-  temperature: exam.temperature ? exam.temperature : "",
-  poids: exam.poids ? exam.poids : "",
+  expectorations: exam.expectorations || "",
+  temperature: exam.temperature || "",
+  poids: exam.poids || "",
   syndromeGrippal: asBoolean(exam.syndromeGrippal),
   signesORIHauts: asBoolean(exam.signesORIHauts),
   anosmie: asBoolean(exam.anosmie),
@@ -34,21 +34,21 @@ const initialValues = (exam) => ({
   conjonctivite: asBoolean(exam.conjonctivite),
   deshydratation: asBoolean(exam.deshydratation),
   diarrhee: asBoolean(exam.diarrhee),
-  etatConscience: exam.etatConscience ? exam.etatConscience : "",
-  frequenceRespi: exam.frequenceRespi ? exam.frequenceRespi : "",
-  SPO2Saturometre: exam.SPO2Saturometre ? exam.SPO2Saturometre : "",
-  SPO2ROTH: exam.SPO2ROTH ? exam.SPO2ROTH : "",
-  PA: exam.PA ? exam.PA : "",
-  pouls: exam.pouls ? exam.pouls : "",
+  etatConscience: exam.etatConscience || "",
+  frequenceRespi: exam.frequenceRespi || "",
+  SPO2Saturometre: exam.SPO2Saturometre || "",
+  SPO2ROTH: exam.SPO2ROTH || "",
+  PA: exam.PA || "",
+  pouls: exam.pouls || "",
   marbrures: asBoolean(exam.marbrures),
-  autre: exam.autre ? exam.autre : "",
+  autre: exam.autre || "",
 });
 
 const PatientExamForm = ({ exam, medecins, IDEs, handleSubmit }) => {
   return (
     <Formik
       enableReinitialize
-      initialValues={initialValues(exam) || {}}
+      initialValues={initialValues(exam || {})}
       validationSchema={patientExamSchema(medecins || [], IDEs || [])}
       onSubmit={handleSubmit(exam)}
     >

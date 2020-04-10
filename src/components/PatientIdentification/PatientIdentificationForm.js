@@ -7,21 +7,23 @@ import { asDateString } from "../../lib/dates";
 
 import { Card, Field, Heading3, twoColumnStyle } from "../../ui";
 
+const initialValues = (patient) => ({
+  lastname: patient.lastname || "",
+  firstname: patient.firstname || "",
+  address: patient.address || "",
+  ssn: patient.ssn || "",
+  dob: (patient.dob && asDateString(patient.dob)) || "",
+  phone: patient.phone || "",
+  email: patient.email || "",
+  physician: patient.physician || "",
+});
+
 const PatientIdentificationForm = (props) => {
   const { patient, handleSubmit } = props;
 
   return (
     <Formik
-      initialValues={{
-        lastname: patient ? patient.lastname : "",
-        firstname: patient ? patient.firstname : "",
-        address: patient ? patient.address : "",
-        ssn: patient ? patient.ssn : "",
-        dob: (patient.dob && asDateString(patient.dob)) || "",
-        phone: patient ? patient.phone : "",
-        email: patient ? patient.email : "",
-        physician: patient ? patient.physician : "",
-      }}
+      initialValues={initialValues(patient || {})}
       validationSchema={patientInfoSchema}
       onSubmit={handleSubmit}
     >

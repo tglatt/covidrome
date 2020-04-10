@@ -6,16 +6,18 @@ import { patientCreationSchema } from "../../lib/validationSchemas";
 
 import { Field } from "../../ui";
 
-const PatientCreationForm = props => {
+const initialValues = (patient) => ({
+  lastname: patient.lastname || "",
+  firstname: patient.firstname || "",
+  dob: patient.dob || "",
+});
+
+const PatientCreationForm = (props) => {
   const { patient, handleSubmit } = props;
 
   return (
     <Formik
-      initialValues={{
-        lastname: patient ? patient.lastname : "",
-        firstname: patient ? patient.firstname : "",
-        dob: patient ? patient.dob : ""
-      }}
+      initialValues={initialValues(patient || {})}
       validationSchema={patientCreationSchema}
       onSubmit={handleSubmit}
     >

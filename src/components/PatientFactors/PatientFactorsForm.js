@@ -5,7 +5,7 @@ import { Card } from "../../ui/Card";
 import { CheckBoxField, Heading3, Textarea, twoColumnStyle } from "../../ui";
 import { asBoolean } from "../../../src/lib/boolean";
 
-const initialValues = riskFactor => ({
+const initialValues = (riskFactor) => ({
   FRMHTA: asBoolean(riskFactor.FRMHTA),
   FRMSup70: asBoolean(riskFactor.FRMSup70),
   FRMImcSup40: asBoolean(riskFactor.FRMImcSup40),
@@ -20,15 +20,15 @@ const initialValues = riskFactor => ({
   FRMImmunoDepression: asBoolean(riskFactor.FRMImmunoDepression),
   FRMCirrhoseB: asBoolean(riskFactor.FRMCirrhoseB),
   FRMThrombose: asBoolean(riskFactor.FRMThrombose),
-  FRMAutre: riskFactor.FRMAutre ? riskFactor.FRMAutre : "",
+  FRMAutre: riskFactor.FRMAutre || "",
   FRMProcheFragile: asBoolean(riskFactor.FRMProcheFragile),
   FRSEIsolement: asBoolean(riskFactor.FRSEIsolement),
   FRSEPrecariteSociEco: asBoolean(riskFactor.FRSEPrecariteSociEco),
   FRSEDifficulteLinguistique: asBoolean(riskFactor.FRSEDifficulteLinguistique),
   FRSETroublesNeuroPsy: asBoolean(riskFactor.FRSETroublesNeuroPsy),
   FRSEPasMoyenCommunication: asBoolean(riskFactor.FRSEPasMoyenCommunication),
-  FRSEAidant: riskFactor.FRSEAidant ? riskFactor.FRSEAidant : "",
-  FRSERemarques: riskFactor.FRSERemarques ? riskFactor.FRSERemarques : "",
+  FRSEAidant: riskFactor.FRSEAidant || "",
+  FRSERemarques: riskFactor.FRSERemarques || "",
   FRSEPieceConfinement: asBoolean(riskFactor.FRSEPieceConfinement),
 });
 
