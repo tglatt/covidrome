@@ -5,6 +5,7 @@ import {
   FieldLabelValue,
   CheckBoxView,
   fourColumnStyle,
+  TextareaView,
 } from "../../ui";
 import { formatDate } from "../../lib/dates";
 
@@ -81,7 +82,7 @@ const PatientExamView = ({ exam, handleEdit }) => {
             <CheckBoxView value={exam.deshydratation} label="déshydrataion" />
             <CheckBoxView value={exam.diarrhee} label="diarrhée" />
             <CheckBoxView value={exam.marbrures} label="marbrures" />
-            <FieldLabelValue value={exam.autre} label="autre" />
+            <TextareaView value={exam.autre} label="autre" />
           </Box>
         </Flex>
       </Flex>
