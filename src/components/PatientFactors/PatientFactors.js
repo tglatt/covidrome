@@ -6,13 +6,13 @@ import { saveOrUpdateRiskFactor } from "../../lib/endpoints";
 import { fetcher } from "../../lib/fetcher";
 import { asBoolean } from "../../../src/lib/boolean";
 
-const PatientFactors = ({ patientId, initialEdit }) => {
+const PatientFactors = ({ patientId }) => {
   const { data: riskFactor, error, mutate } = useSWR(
     `/api/patients/${patientId}/factors`,
     fetcher
   );
 
-  const [edit, setEdit] = useState(initialEdit);
+  const [edit, setEdit] = useState(false);
 
   const handleSubmit = async (values, { setSubmitting }) => {
     const data = {
@@ -60,7 +60,7 @@ const PatientFactors = ({ patientId, initialEdit }) => {
 
   return (
     <Fragment>
-      {edit ? (
+      {edit || !riskFactor || !riskFactor.id ? (
         <PatientFactorsForm
           riskFactor={riskFactor}
           handleSubmit={handleSubmit}

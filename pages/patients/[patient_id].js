@@ -13,10 +13,10 @@ const PatientPage = ({ patientId, edit }) => {
           <PatientIdentification patientId={patientId} />
         </Box>
         <Box mb={2}>
-          <PatientFactors patientId={patientId} initialEdit={edit} />
+          <PatientFactors patientId={patientId} />
         </Box>
         <Box mb={2}>
-          <PatientExam patientId={patientId} initialEdit={edit} />
+          <PatientExam patientId={patientId} />
         </Box>
       </BoxWrapper>
     </Layout>
@@ -24,7 +24,7 @@ const PatientPage = ({ patientId, edit }) => {
 };
 
 PatientPage.getInitialProps = async ({ query }) => {
-  return { patientId: query.patient_id, edit: query.edit };
+  return { patientId: query.patient_id };
 };
 
 export default PatientPage;

@@ -19,7 +19,7 @@ const EditLink = ({ handleEdit }) => (
 
 const PatientExamView = ({ exam, handleEdit }) => {
   return (
-    <Card>
+    <Card mb={1}>
       <Flex ml={1} flexDirection="column">
         <Flex mb={1}>
           <Heading3>

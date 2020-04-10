@@ -17,7 +17,7 @@ export default async (req, res) => {
     }
   }
 
-  const exams = await Exam.query().where({ patientId });
+  const exams = await Exam.query().where({ patientId }).orderBy("id", "desc");
 
   res.status(200).json(exams || []);
 };
