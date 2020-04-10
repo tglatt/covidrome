@@ -97,18 +97,17 @@ const PatientExam = ({ patientId }) => {
 
   return (
     <Fragment>
-      {!addingExam && (
-        <Flex justifyContent="flex-end" mb={1}>
-          <AddExamLink handleAddExam={handleAddingExam} />
-        </Flex>
-      )}
-      {(exams.length === 0 || addingExam) && (
+      {exams.length === 0 || addingExam ? (
         <PatientExamForm
           exam={{}}
           medecins={medecins}
           IDEs={IDEs}
           handleSubmit={handleSubmit}
         />
+      ) : (
+        <Flex justifyContent="flex-end" mb={1}>
+          <AddExamLink handleAddExam={handleAddingExam} />
+        </Flex>
       )}
 
       {exams.map((exam) => {
