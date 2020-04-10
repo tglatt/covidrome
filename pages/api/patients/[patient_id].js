@@ -8,7 +8,10 @@ export default async (req, res) => {
     const patient = JSON.parse(req.body);
     await Patient.query()
       .findById(patientId)
-      .patch(patient);
+      .patch({
+        ...patient,
+        dob: (patient.dob && new Date(patient.dob)) || "",
+      });
   }
   const patient = await Patient.query().findById(patientId);
   res.status(200).json(patient);

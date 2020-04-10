@@ -3,10 +3,11 @@ import React from "react";
 import { Box, Flex, Button } from "rebass";
 
 import { patientInfoSchema } from "../../lib/validationSchemas";
+import { timestampToInput } from "../../lib/dates";
 
 import { Card, Field, Heading3, twoColumnStyle } from "../../ui";
 
-const PatientIdentificationForm = props => {
+const PatientIdentificationForm = (props) => {
   const { patient, handleSubmit } = props;
 
   return (
@@ -16,10 +17,10 @@ const PatientIdentificationForm = props => {
         firstname: patient ? patient.firstname : "",
         address: patient ? patient.address : "",
         ssn: patient ? patient.ssn : "",
-        dob: patient ? patient.dob : "",
+        dob: (patient.dob && timestampToInput(patient.dob)) || "",
         phone: patient ? patient.phone : "",
         email: patient ? patient.email : "",
-        physician: patient ? patient.physician : ""
+        physician: patient ? patient.physician : "",
       }}
       validationSchema={patientInfoSchema}
       onSubmit={handleSubmit}
