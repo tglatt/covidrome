@@ -2,7 +2,6 @@ import { Box, Flex, Link } from "rebass";
 import {
   Card,
   CheckBoxView,
-  FieldLabelValue,
   TextareaView,
   Heading3,
   twoColumnStyle,

@@ -1,5 +1,11 @@
 import { Box, Flex, Text, Link } from "rebass";
-import { Card, Heading3, FieldLabelValue, CheckBoxView } from "../../ui";
+import {
+  Card,
+  Heading3,
+  FieldLabelValue,
+  CheckBoxView,
+  fourColumnStyle,
+} from "../../ui";
 import { formatDate } from "../../lib/dates";
 
 const EditLink = ({ handleEdit }) => (
@@ -30,7 +36,7 @@ const PatientExamView = ({ exam, handleEdit }) => {
           <EditLink handleEdit={handleEdit} />
         </Flex>
         <Flex>
-          <Box width={1 / 4}>
+          <Box sx={fourColumnStyle}>
             <FieldLabelValue
               value={exam.frequenceRespi}
               label="fréquence respi X/mn"
@@ -42,7 +48,7 @@ const PatientExamView = ({ exam, handleEdit }) => {
             <FieldLabelValue value={exam.SPO2ROTH} label="SPO2 ROTH" />
             <FieldLabelValue value={exam.PA} label="PA" />
           </Box>
-          <Box width={1 / 4}>
+          <Box sx={fourColumnStyle}>
             <FieldLabelValue value={exam.temperature} label="température" />
             <FieldLabelValue value={exam.poids} label="poids" />
             <FieldLabelValue value={exam.pouls} label="pouls" />
@@ -55,7 +61,7 @@ const PatientExamView = ({ exam, handleEdit }) => {
               label="état de conscience"
             />
           </Box>
-          <Box width={1 / 4}>
+          <Box sx={fourColumnStyle}>
             <CheckBoxView value={exam.toux} label="toux" />
 
             <CheckBoxView
@@ -69,7 +75,7 @@ const PatientExamView = ({ exam, handleEdit }) => {
             <CheckBoxView value={exam.anosmie} label="anosmie" />
             <CheckBoxView value={exam.agueusie} label="agueusie" />
           </Box>
-          <Box width={1 / 4}>
+          <Box sx={fourColumnStyle}>
             <CheckBoxView value={exam.dyspnee} label="dyspnee" />
             <CheckBoxView value={exam.conjonctivite} label="conjonctivite" />
             <CheckBoxView value={exam.deshydratation} label="déshydrataion" />
