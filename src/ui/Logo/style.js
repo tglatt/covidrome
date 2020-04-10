@@ -1,12 +1,15 @@
 const LogoStyle = {
-  width: ['77px'],
+  width: ["150px"],
+  img: {
+    width: "100%",
+  },
 };
 
 const logoTextStyle = {
-  fontFamily: 'heading',
-  fontSize: 4,
+  fontFamily: "heading",
+  fontSize: 8,
   fontWeight: 500,
-  lineHeight: '46px',
+  lineHeight: "71px",
   ml: 1,
 };
 
