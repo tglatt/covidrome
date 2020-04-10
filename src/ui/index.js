@@ -9,3 +9,4 @@ export * from "./Heading";
 export * from "./LinkButton/LinkButton";
 export * from "./Select/Select";
 export * from "./Textarea/Textarea";
+export * from "./TextareaView/TextareaView";

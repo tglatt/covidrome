@@ -3,6 +3,7 @@ import {
   Card,
   CheckBoxView,
   FieldLabelValue,
+  TextareaView,
   Heading3,
   twoColumnStyle,
 } from "../../ui";
@@ -67,7 +68,7 @@ const PatientFactorsView = ({ riskFactor, handleEdit }) => {
             label="cirrhose >= stade B"
           />
           <CheckBoxView value={factors.FRMThrombose} label="thrombose" />
-          <FieldLabelValue value={factors.FRMAutre} label="autre" />
+          <TextareaView value={factors.FRMAutre} label="autre" />
           <CheckBoxView
             value={factors.FRMProcheFragile}
             label="Présence d'un proche fragile au domicile"
@@ -91,8 +92,8 @@ const PatientFactorsView = ({ riskFactor, handleEdit }) => {
             label="pas de moyen de communication"
             value={factors.FRSEPasMoyenCommunication}
           />
-          <FieldLabelValue label="Aidant éventuel" value={factors.FRSEAidant} />
-          <FieldLabelValue label="Remarques" value={factors.FRSERemarques} />
+          <TextareaView label="Aidant éventuel" value={factors.FRSEAidant} />
+          <TextareaView label="Remarques" value={factors.FRSERemarques} />
           <CheckBoxView
             label="Pièce de confinement disponible"
             value={factors.FRSEPieceConfinement}

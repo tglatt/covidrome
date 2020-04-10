@@ -2,10 +2,10 @@ import React from "react";
 import { Flex, Box, Text } from "rebass";
 
 import { FieldLabel } from "../FieldLabel";
-import { content } from "./style";
+import { content, wrapperStyle } from "./style";
 
 const FieldLabelValue = ({ label, value }) => (
-  <Flex>
+  <Flex sx={wrapperStyle}>
     <Box>
       <FieldLabel label={label} />
     </Box>

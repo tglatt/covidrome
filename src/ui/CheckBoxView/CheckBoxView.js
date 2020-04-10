@@ -1,10 +1,10 @@
 import React from "react";
 import { Box, Text } from "rebass";
-import { checkBoxViewStyle } from "./style";
+import { checkBoxViewStyle, wrapperStyle } from "./style";
 
 const CheckBoxView = ({ label, value }) => {
   return (
-    <Box>
+    <Box sx={wrapperStyle}>
       <Text sx={checkBoxViewStyle(value)}>{label}</Text>
     </Box>
   );

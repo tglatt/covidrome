@@ -6,4 +6,10 @@ const checkBoxViewStyle = (value) => {
   };
 };
 
-export { checkBoxViewStyle };
+const wrapperStyle = {
+  borderBottomColor: "gray",
+  borderBottomWidth: "1px",
+  borderBottomStyle: "solid",
+};
+
+export { checkBoxViewStyle, wrapperStyle };
