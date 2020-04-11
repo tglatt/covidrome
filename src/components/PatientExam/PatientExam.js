@@ -1,26 +1,12 @@
 import { Fragment, useState } from "react";
-import { Box, Flex, Link } from "rebass";
+import { Flex } from "rebass";
 import useSWR from "swr";
 import { PatientExamForm } from "./PatientExamForm.js";
 import { PatientExamView } from "./PatientExamView.js";
 import { saveOrUpdateExam } from "../../lib/endpoints";
 import { fetcher } from "../../lib/fetcher";
+import { ActionLink } from "../../ui";
 import { asBoolean } from "../../../src/lib/boolean";
-
-const AddExamLink = ({ handleAddExam }) => (
-  <Box ml={2}>
-    <Link
-      sx={{
-        cursor: "pointer",
-        fontSize: "1",
-        textDecoration: "underline",
-      }}
-      onClick={handleAddExam}
-    >
-      ajouter un bilan
-    </Link>
-  </Box>
-);
 
 const PatientExam = ({ patientId }) => {
   const { data: exams, error, mutate } = useSWR(
@@ -106,7 +92,11 @@ const PatientExam = ({ patientId }) => {
         />
       ) : (
         <Flex justifyContent="flex-end" mb={1}>
-          <AddExamLink handleAddExam={handleAddingExam} />
+          <ActionLink
+            handleClick={handleAddingExam}
+            label="ajouter un bilan"
+            fontSize={1}
+          />
         </Flex>
       )}
 

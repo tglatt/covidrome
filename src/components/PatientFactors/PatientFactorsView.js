@@ -1,26 +1,12 @@
 import { Box, Flex, Link } from "rebass";
 import {
+  ActionLink,
   Card,
   CheckBoxView,
   TextareaView,
   Heading3,
   twoColumnStyle,
 } from "../../ui";
-
-const EditLink = ({ handleEdit }) => (
-  <Box ml={2}>
-    <Link
-      sx={{
-        cursor: "pointer",
-        fontSize: "0",
-        textDecoration: "underline",
-      }}
-      onClick={handleEdit}
-    >
-      éditer
-    </Link>
-  </Box>
-);
 
 const PatientFactorsView = ({ riskFactor, handleEdit }) => {
   const factors = riskFactor ? riskFactor : {};
@@ -30,7 +16,7 @@ const PatientFactorsView = ({ riskFactor, handleEdit }) => {
         <Heading3 pl={1}>
           Facteurs de risques médicaux et sociaux-environementaux
         </Heading3>
-        <EditLink handleEdit={handleEdit} />
+        <ActionLink handleClick={handleEdit} label="éditer" />
       </Flex>
       <Flex>
         <Box sx={twoColumnStyle}>

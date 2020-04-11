@@ -1,5 +1,6 @@
 import { Box, Flex, Text, Link } from "rebass";
 import {
+  ActionLink,
   Card,
   Heading3,
   FieldLabelValue,
@@ -8,21 +9,6 @@ import {
   TextareaView,
 } from "../../ui";
 import { formatDate } from "../../lib/dates";
-
-const EditLink = ({ handleEdit }) => (
-  <Box ml={2}>
-    <Link
-      sx={{
-        cursor: "pointer",
-        fontSize: "0",
-        textDecoration: "underline",
-      }}
-      onClick={handleEdit}
-    >
-      éditer
-    </Link>
-  </Box>
-);
 
 const PatientExamView = ({ exam, handleEdit }) => {
   return (
@@ -34,7 +20,7 @@ const PatientExamView = ({ exam, handleEdit }) => {
               exam.nurse
             }`}
           </Heading3>
-          <EditLink handleEdit={handleEdit} />
+          <ActionLink handleClick={handleEdit} label="éditer" />
         </Flex>
         <Flex>
           <Box sx={fourColumnStyle}>

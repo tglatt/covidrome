@@ -1,5 +1,6 @@
 import { Box, Flex, Link } from "rebass";
 import {
+  ActionLink,
   Card,
   twoColumnStyle,
   Heading3,
@@ -15,18 +16,7 @@ const PatientIdentificationView = ({ patient, handleEdit }) => {
         <Heading3 pl={1}>
           {patient.firstname} {patient.lastname}
         </Heading3>
-        <Box ml={2}>
-          <Link
-            sx={{
-              cursor: "pointer",
-              fontSize: "0",
-              textDecoration: "underline",
-            }}
-            onClick={handleEdit}
-          >
-            éditer
-          </Link>
-        </Box>
+        <ActionLink handleClick={handleEdit} label="éditer" />
       </Flex>
       <Flex>
         <Box sx={twoColumnStyle}>
