@@ -30,12 +30,17 @@ const PatientIdentification = ({ patientId }) => {
     setEdit(true);
   };
 
+  const handleCancel = () => {
+    setEdit(false);
+  };
+
   return (
     <Fragment>
       {edit ? (
         <PatientIdentificationForm
           patient={patient}
           handleSubmit={handleSubmit}
+          handleCancel={handleCancel}
         />
       ) : (
         <PatientIdentificationView patient={patient} handleEdit={handleEdit} />

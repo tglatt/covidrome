@@ -1,5 +1,5 @@
 import { Form, Formik } from "formik";
-import { Box, Button, Flex } from "rebass";
+import { Box, Flex } from "rebass";
 import {
   etatConscienceChoices,
   expectorationsChoices,
@@ -10,6 +10,7 @@ import { Card } from "../../ui/Card";
 import {
   CheckBoxField,
   Field,
+  FormSubmit,
   Heading3,
   Select,
   Textarea,
@@ -44,7 +45,13 @@ const initialValues = (exam) => ({
   autre: exam.autre || "",
 });
 
-const PatientExamForm = ({ exam, medecins, IDEs, handleSubmit }) => {
+const PatientExamForm = ({
+  exam,
+  medecins,
+  IDEs,
+  handleSubmit,
+  handleCancel,
+}) => {
   return (
     <Formik
       enableReinitialize
@@ -101,13 +108,7 @@ const PatientExamForm = ({ exam, medecins, IDEs, handleSubmit }) => {
               </Box>
             </Flex>
 
-            <Flex alignItems="center" justifyContent="flex-end">
-              <Box>
-                <Button type="submit" disabled={isSubmitting}>
-                  Enregistrer
-                </Button>
-              </Box>
-            </Flex>
+            <FormSubmit disabled={isSubmitting} handleCancel={handleCancel} />
           </Form>
         </Card>
       )}

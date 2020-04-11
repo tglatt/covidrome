@@ -89,6 +89,7 @@ const PatientExam = ({ patientId }) => {
           medecins={medecins}
           IDEs={IDEs}
           handleSubmit={handleSubmit}
+          handleCancel={exams.length !== 0 && (() => setAddingExam(false))}
         />
       ) : (
         <Flex justifyContent="flex-end" mb={1}>
@@ -108,6 +109,7 @@ const PatientExam = ({ patientId }) => {
             medecins={medecins}
             IDEs={IDEs}
             handleSubmit={handleSubmit}
+            handleCancel={() => removeFromEditting(exam.id)}
           />
         ) : (
           <PatientExamView

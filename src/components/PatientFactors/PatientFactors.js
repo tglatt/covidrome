@@ -64,6 +64,7 @@ const PatientFactors = ({ patientId }) => {
         <PatientFactorsForm
           riskFactor={riskFactor}
           handleSubmit={handleSubmit}
+          handleCancel={riskFactor.id && (() => setEdit(false))}
         />
       ) : (
         <PatientFactorsView riskFactor={riskFactor} handleEdit={handleEdit} />

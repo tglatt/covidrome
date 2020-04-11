@@ -1,11 +1,11 @@
 import { Form, Formik } from "formik";
 import React from "react";
-import { Box, Flex, Button } from "rebass";
+import { Box, Flex } from "rebass";
 
 import { patientInfoSchema } from "../../lib/validationSchemas";
 import { asDateString } from "../../lib/dates";
 
-import { Card, Field, Heading3, twoColumnStyle } from "../../ui";
+import { Card, Field, Heading3, FormSubmit, twoColumnStyle } from "../../ui";
 
 const initialValues = (patient) => ({
   lastname: patient.lastname || "",
@@ -18,9 +18,7 @@ const initialValues = (patient) => ({
   physician: patient.physician || "",
 });
 
-const PatientIdentificationForm = (props) => {
-  const { patient, handleSubmit } = props;
-
+const PatientIdentificationForm = ({ patient, handleSubmit, handleCancel }) => {
   return (
     <Formik
       initialValues={initialValues(patient || {})}
@@ -47,13 +45,7 @@ const PatientIdentificationForm = (props) => {
                 <Field name="phone" label="Téléphone" />
               </Box>
             </Flex>
-            <Flex alignItems="center" justifyContent="flex-end">
-              <Box>
-                <Button type="submit" disabled={isSubmitting}>
-                  Enregistrer
-                </Button>
-              </Box>
-            </Flex>
+            <FormSubmit disabled={isSubmitting} handleCancel={handleCancel} />
           </Form>
         </Card>
       )}

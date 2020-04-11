@@ -1,8 +1,14 @@
 import { Form, Formik } from "formik";
-import { Box, Button, Flex } from "rebass";
+import { Box, Flex } from "rebass";
 import { patientFactorsSchema } from "../../lib/validationSchemas";
-import { Card } from "../../ui/Card";
-import { CheckBoxField, Heading3, Textarea, twoColumnStyle } from "../../ui";
+import {
+  Card,
+  CheckBoxField,
+  FormSubmit,
+  Heading3,
+  Textarea,
+  twoColumnStyle,
+} from "../../ui";
 import { asBoolean } from "../../../src/lib/boolean";
 
 const initialValues = (riskFactor) => ({
@@ -32,7 +38,7 @@ const initialValues = (riskFactor) => ({
   FRSEPieceConfinement: asBoolean(riskFactor.FRSEPieceConfinement),
 });
 
-const PatientFactorsForm = ({ riskFactor, handleSubmit }) => {
+const PatientFactorsForm = ({ riskFactor, handleSubmit, handleCancel }) => {
   return (
     <Formik
       enableReinitialize
@@ -116,13 +122,7 @@ const PatientFactorsForm = ({ riskFactor, handleSubmit }) => {
                 </Box>
               </Box>
             </Flex>
-            <Flex alignItems="center" justifyContent="flex-end">
-              <Box>
-                <Button type="submit" disabled={isSubmitting}>
-                  Enregistrer
-                </Button>
-              </Box>
-            </Flex>
+            <FormSubmit disabled={isSubmitting} handleCancel={handleCancel} />
           </Form>
         </Card>
       )}

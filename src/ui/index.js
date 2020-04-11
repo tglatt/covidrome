@@ -5,6 +5,7 @@ export * from "./CheckBoxView/CheckBoxView";
 export * from "./Field/Field";
 export * from "./FieldLabel";
 export * from "./FieldLabelValue";
+export * from "./FormSubmit/FormSubmit";
 export * from "./Grid";
 export * from "./Heading";
 export * from "./LinkButton/LinkButton";
